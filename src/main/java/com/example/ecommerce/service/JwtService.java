@@ -25,9 +25,10 @@ public class JwtService {
 	private String secretkey=generatekey();
 	
 	//This method is use to generate jwt token
-	public String generateToken(String email) {
+	public String generateToken(String email,String role) {
 		
 		Map<String,Object> claim = new HashMap<>();
+		claim.put("role", role);
 		
 		return Jwts.builder()
 				.claims()
@@ -63,8 +64,7 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 	
-	public String getToken(HttpServletRequest request) {
-		
+	public String getToken(HttpServletRequest request) {		
 		String auth = request.getHeader("Authorization");
 		
 		if(auth == null || !auth.startsWith("Bearer "))
@@ -101,7 +101,27 @@ public class JwtService {
     }
     
   //Sub method for validateToken() Method
-    public Date extractExpiration(String token) {
+    private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
+    
+    // check if token will expire in next N minutes
+    public boolean willExpireSoon(String token, int minutes) {
+        Date expiration = extractExpiration(token);
+        long diff = expiration.getTime() - System.currentTimeMillis();
+        return diff <= minutes * 60 * 1000;
+    }
+
+    // regenerate token using same email
+    public String refreshToken(String token) {
+        String email = extractEmail(token);
+        String role = extractRole(token);
+        return generateToken(email,role);
+    }
+    
+    public String extractRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class));
+    }
+
+    
 }

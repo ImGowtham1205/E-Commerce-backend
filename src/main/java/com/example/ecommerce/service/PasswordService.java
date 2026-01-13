@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.ecommerce.model.Admins;
 import com.example.ecommerce.model.PasswordResetToken;
 import com.example.ecommerce.model.Users;
+import com.example.ecommerce.repository.AdminRepo;
 import com.example.ecommerce.repository.PasswordResetTokenRepo;
 import com.example.ecommerce.repository.UserRepo;
 
@@ -20,13 +22,15 @@ public class PasswordService {
 	private PasswordResetTokenRepo passwordrepo;
 	private MailService mailservice;
 	private PasswordEncoder encorder;
+	private AdminRepo adminrepo;
 	
 	public PasswordService(UserRepo userrepo,PasswordResetTokenRepo passwordrepo,
-			MailService mailservice,PasswordEncoder encorder) {
+			MailService mailservice,PasswordEncoder encorder,AdminRepo adminrepo) {
 		this.userrepo = userrepo;
 		this.passwordrepo = passwordrepo;
 		this.mailservice = mailservice;
 		this.encorder = encorder;
+		this.adminrepo = adminrepo;
 	}
 	
 	public ResponseEntity<String> forgotPassword(String email) {
@@ -64,6 +68,10 @@ public class PasswordService {
 	
 	public Users getUser(String email) {
 		return userrepo.findByEmail(email);
+	}
+	
+	public Admins getAdmin(String email) {
+		return adminrepo.findByEmail(email);
 	}
 	
 	public boolean checkCurrentPassword(Users user ,String currentPassword) {

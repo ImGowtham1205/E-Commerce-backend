@@ -1,7 +1,10 @@
 package com.example.ecommerce.controller;
 
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,13 +29,15 @@ public class LoginController {
 	}
 	
 		@PostMapping("/login")
-		public ResponseEntity<String> login(@RequestBody Users user,HttpServletResponse response) {
+		public ResponseEntity<?> login(@RequestBody Users user,HttpServletResponse response) {
 			ResponseEntity<String> status = authservice.verify(user);
 			if(status.getStatusCode() == HttpStatus.OK) {
 				String email = user.getEmail();
-				String token = jwtservice.generateToken(email);
-				return ResponseEntity.ok(token);
+				UserDetails userdetail = authservice.loadUser(email);
+				String role = userdetail.getAuthorities().iterator().next().getAuthority();
+				String token = jwtservice.generateToken(email,role);
+				return ResponseEntity.ok(Map.of("token",token,"role",role));
 			}	
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(status.getBody());
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message","Invalid email or password"));
 		}
 }

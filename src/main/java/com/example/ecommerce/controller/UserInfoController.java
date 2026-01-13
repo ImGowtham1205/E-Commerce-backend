@@ -22,7 +22,7 @@ public class UserInfoController {
 		this.passservice = passservice;
 	}
 	
-	@GetMapping("/api/userinfo")
+	@GetMapping("/api/user/userinfo")
 	public Users userInfo(HttpServletRequest request) {
 		String token = jwtservice.getToken(request);
 		String email = jwtservice.extractEmail(token);

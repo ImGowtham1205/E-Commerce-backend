@@ -57,7 +57,7 @@ public class PasswordController {
 		return ResponseEntity.status(HttpStatus.OK).body("Password reset successfully");
 	}
 	
-	@PutMapping("/api/changepassword")
+	@PutMapping("/api/user/changepassword")
 	public ResponseEntity<String> changePassword(@RequestBody Map<String,String> body,
 			HttpServletRequest request){
 		
