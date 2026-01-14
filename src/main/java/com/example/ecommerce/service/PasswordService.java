@@ -116,5 +116,12 @@ public class PasswordService {
 			return true;
 		else 
 			return false;
-	}	
+	}
+	
+	public boolean checkCurrentPassword(Admins admin ,String currentPassword) {
+		if(encorder.matches(currentPassword, admin.getPassword()))
+			return true;
+		else 
+			return false;
+	}
 }

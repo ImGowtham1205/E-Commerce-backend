@@ -100,4 +100,29 @@ public class PasswordController {
 		passwordservice.changepassword(user);
 		return ResponseEntity.status(HttpStatus.OK).body("Password updated successfully");
 	}
+	
+	@PutMapping("/api/admin/changepassword")
+	public ResponseEntity<String> changeAdminPassword(@RequestBody Map<String,String> body,
+			HttpServletRequest request){
+		
+		String currentPassword = body.get("currentpassword");
+		String newPassword = body.get("newpassword");
+				
+		String token = jwtservice.getToken(request);
+				
+		if(token == null)
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).
+					body("Unauthorized");
+		
+		String email = jwtservice.extractEmail(token);
+		
+		Admins admin = passwordservice.getAdmin(email);
+		
+		if(!(passwordservice.checkCurrentPassword(admin, currentPassword)))
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Current password doesn't match");
+		
+		admin.setPassword(encorder.encode(newPassword));
+		passwordservice.changepassword(admin);
+		return ResponseEntity.status(HttpStatus.OK).body("Password updated successfully");
+	}
 }
