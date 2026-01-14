@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.ecommerce.model.AdminPasswordResetToken;
+import com.example.ecommerce.model.Admins;
 import com.example.ecommerce.model.PasswordResetToken;
 import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.JwtService;
@@ -47,13 +49,30 @@ public class PasswordController {
 	public ResponseEntity<String> resetPassword(@RequestBody Map<String,String> body){
 		String token = body.get("token");
 		String password = body.get("password");
-		PasswordResetToken prt = passwordservice.checkToken(token);
-		if(prt == null)
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invalid or expiry link");
-		Users user = prt.getUser();
-		user.setPassword(encorder.encode(password));
-		passwordservice.changepassword(user);
-		passwordservice.deleteToken(prt);
+		PasswordResetToken prt = null;
+		AdminPasswordResetToken aprt = null;
+		
+		prt = passwordservice.checkToken(token);
+		if(prt == null) {
+			aprt = passwordservice.checkAdminToken(token);
+			if(aprt == null)
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invalid or expiry link");
+		}
+		
+		if(prt != null) {
+			Users user = prt.getUser();
+			user.setPassword(encorder.encode(password));
+			passwordservice.changepassword(user);
+			passwordservice.deleteToken(prt);
+		}
+		
+		if(aprt != null) {
+			Admins admin = aprt.getAdmin();
+			admin.setPassword(encorder.encode(password));
+			passwordservice.changepassword(admin);
+			passwordservice.deleteToken(aprt);
+		}
+		
 		return ResponseEntity.status(HttpStatus.OK).body("Password reset successfully");
 	}
 	

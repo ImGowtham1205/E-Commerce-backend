@@ -4,6 +4,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.example.ecommerce.model.Admins;
 import com.example.ecommerce.model.Users;
 
 @Service
@@ -50,6 +51,41 @@ public class MailService {
 		String receiver =  user.getEmail();
 		String url = "http://localhost:5173/reset-password?token="+token;
 		String body = "Hello "+user.getName()+",\r\n"
+				+ "\r\n"
+				+ "We received a request to reset your AZCART account password.\r\n"
+				+ "\r\n"
+				+ "To create a new password, please click the link below:\r\n"
+				+ url+"\r\n"
+				+ "\r\n"
+				+ "For your security, this link will expire in 15 minutes and can be used only once.\r\n"
+				+ "\r\n"
+				+ "If you did not request a password reset, please ignore this email. Your account will remain secure.\r\n"
+				+ "\r\n"
+				+ "Password requirements:\r\n"
+				+ "• Minimum 8 characters\r\n"
+				+ "• At least 1 uppercase letter\r\n"
+				+ "• At least 1 lowercase letter\r\n"
+				+ "• At least 1 number\r\n"
+				+ "• At least 1 special character\r\n"
+				+ "\r\n"
+				+ "Thank you for choosing AZCART.\r\n"
+				+ "\r\n"
+				+ "Best regards,\r\n"
+				+ "AZCART Support Team\r\n"
+				+ "azcart.noreply@gmail.com\r\n"
+				+ "";
+		
+		message.setSubject(subject);
+		message.setText(body);
+		message.setTo(receiver);
+		sender.send(message);
+	}
+	
+	protected void forgotPasswordMail(Admins admin,String token) {
+		String subject = "AZCART – Reset Your Password";
+		String receiver =  admin.getEmail();
+		String url = "http://localhost:5173/reset-password?token="+token;
+		String body = "Hello "+admin.getAdminName()+",\r\n"
 				+ "\r\n"
 				+ "We received a request to reset your AZCART account password.\r\n"
 				+ "\r\n"
