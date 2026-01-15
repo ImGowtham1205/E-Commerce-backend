@@ -22,8 +22,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @Service
 public class JwtService {
 
-	private String secretkey=generatekey();
-	
+	private String secretkey = generatekey();
+		
 	//This method is use to generate jwt token
 	public String generateToken(String email,String role) {
 		
