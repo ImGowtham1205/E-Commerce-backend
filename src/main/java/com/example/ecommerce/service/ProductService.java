@@ -1,5 +1,7 @@
 package com.example.ecommerce.service;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,4 +23,11 @@ public class ProductService {
 		return ResponseEntity.status(HttpStatus.OK).body("Product added successfully");
 	}
 	
+	public List<Products> fetchProductsByCategory(String category){
+		return productrepo.findByCategory(category);
+	}
+	
+	public Products getProductById(long id) {
+		return productrepo.findById(id).orElse(null);
+	}
 }

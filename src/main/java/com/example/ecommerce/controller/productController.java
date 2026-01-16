@@ -1,10 +1,14 @@
 package com.example.ecommerce.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,11 +19,11 @@ import com.example.ecommerce.service.ProductService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
-public class productController {
+public class ProductController {
 	
 	private ProductService productservice;
 	
-	public productController(ProductService productservice) {
+	public ProductController(ProductService productservice) {
 		this.productservice = productservice;
 	}
 	
@@ -39,5 +43,19 @@ public class productController {
 		}
 		
 		return ResponseEntity.status(status.getStatusCode()).body(status.getBody());
+	}
+	
+	@GetMapping("/api/products/{category}")
+	public List<Products> fetchProductByCategory(@PathVariable String category){
+		return productservice.fetchProductsByCategory(category);
+	}
+	
+	@GetMapping("/api/products/image/{id}")
+	public ResponseEntity<byte[]> getProductImage(@PathVariable long id){
+		Products product = productservice.getProductById(id);
+		byte[] imagedata = product.getImagedata();
+		return ResponseEntity.ok()
+				.contentType(MediaType.valueOf(product.getImagetype()))
+				.body(imagedata);
 	}
 }
