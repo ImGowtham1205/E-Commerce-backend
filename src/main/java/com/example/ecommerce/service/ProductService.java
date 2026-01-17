@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.ecommerce.model.Products;
+import com.example.ecommerce.projection.ProductView;
 import com.example.ecommerce.repository.ProductRepo;
 
 @Service
@@ -23,7 +24,7 @@ public class ProductService {
 		return ResponseEntity.status(HttpStatus.OK).body("Product added successfully");
 	}
 	
-	public List<Products> fetchProductsByCategory(String category){
+	public List<ProductView> fetchProductsByCategory(String category){
 		return productrepo.findByCategory(category);
 	}
 	

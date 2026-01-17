@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.ecommerce.model.Products;
+import com.example.ecommerce.projection.ProductView;
 import com.example.ecommerce.service.ProductService;
 
 @RestController
@@ -46,8 +47,13 @@ public class ProductController {
 	}
 	
 	@GetMapping("/api/products/{category}")
-	public List<Products> fetchProductByCategory(@PathVariable String category){
+	public List<ProductView> fetchProductByCategory(@PathVariable String category){
 		return productservice.fetchProductsByCategory(category);
+	}
+	
+	@GetMapping("/api/products/details/{id}")
+	public Products fetchProductById(@PathVariable long id) {
+		return productservice.getProductById(id);
 	}
 	
 	@GetMapping("/api/products/image/{id}")
