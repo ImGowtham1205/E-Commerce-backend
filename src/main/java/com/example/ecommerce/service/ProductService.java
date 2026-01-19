@@ -31,4 +31,18 @@ public class ProductService {
 	public Products getProductById(long id) {
 		return productrepo.findById(id).orElse(null);
 	}
+	
+	public ResponseEntity<String> updateProduct(Products product){
+		productrepo.save(product);
+		return ResponseEntity.status(HttpStatus.OK).body("Product updated successfully");
+	}
+	
+	public ResponseEntity<String> deleteProduct(long id){
+		productrepo.deleteById(id);
+		return ResponseEntity.status(HttpStatus.OK).body("Product deleted successfully");
+	}
+	
+	public List<ProductView> fetchAllProducts(){
+		return productrepo.findAllProducts();
+	}
 }
