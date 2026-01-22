@@ -8,6 +8,7 @@ import com.example.ecommerce.model.Users;
 @Repository
 public interface UserRepo extends JpaRepository<Users, Long>{
 	Users findByEmail(String email);
+	Users findById(long id);
 	boolean existsByEmail(String email);
 	boolean existsByPhoneno(String phoneno);
 }

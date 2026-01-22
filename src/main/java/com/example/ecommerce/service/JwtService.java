@@ -1,15 +1,13 @@
 package com.example.ecommerce.service;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +19,9 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class JwtService {
-
-	private String secretkey = generatekey();
+		
+	@Value("${jwt.secret}")
+	private String secretkey;
 		
 	//This method is use to generate jwt token
 	public String generateToken(String email,String role) {
@@ -45,18 +44,6 @@ public class JwtService {
 	private SecretKey getKey() {
 		 byte[] key=Decoders.BASE64.decode(secretkey);
 		return Keys.hmacShaKeyFor(key);
-	}
-	
-	//This method is use to generate key for jwt token
-	private String generatekey() {
-		try {
-			KeyGenerator keygen = KeyGenerator.getInstance("HmacSHA256");
-			SecretKey skey = keygen.generateKey();
-			return Base64.getEncoder().encodeToString(skey.getEncoded());
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 	
 	//This method is use to extract email from the token

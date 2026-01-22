@@ -48,6 +48,7 @@ public class ProductController {
 		return ResponseEntity.status(status.getStatusCode()).body(status.getBody());
 	}
 	
+	
 	@PutMapping("/api/admin/updateproduct")
 	public ResponseEntity<String> updateProduct(@RequestPart Products product , 
 			@RequestPart(required = false) MultipartFile file){
