@@ -45,4 +45,8 @@ public class ProductService {
 	public List<ProductView> fetchAllProducts(){
 		return productrepo.findAllProducts();
 	}
+	
+	public void updateStock(Products product){
+		productrepo.save(product);
+	}
 }

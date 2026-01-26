@@ -29,11 +29,9 @@ public class CartService {
 	
 	public void deleteCartItemById(ObjectId id){
 		cartrepo.deleteById(id);
-		//return ResponseEntity.ok("Product removed from your cart successfully");
 	}
 	
 	public void updateQuantity(Cart cart) {
 		cartrepo.save(cart);
-		//return ResponseEntity.ok("Product quantity successfully updated to your cart");
 	}
 }

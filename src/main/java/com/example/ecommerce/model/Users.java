@@ -37,9 +37,12 @@ public class Users {
 	@Column(name="role",nullable = false)
 	private String role = "USER";
 	
+	@Column(name="address",nullable = false,length = 700)
+	private String address;
+	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE,orphanRemoval = true)
 	private List<PasswordResetToken> token;
-	
+		
 	public long getId() {
 		return id;
 	}
@@ -76,11 +79,10 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	@Override
-	public String toString() {
-		return "Users [id=" + id + ", name=" + name + ", email=" + email + ", phoneno=" + phoneno + ", password="
-				+ password + ", role=" + role + "]";
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}	
-	
 }

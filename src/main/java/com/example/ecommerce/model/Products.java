@@ -24,7 +24,7 @@ public class Products {
 	@Lob
 	private byte[] imagedata;
 	private String category;
-	
+		
 	public long getId() {
 		return id;
 	}
