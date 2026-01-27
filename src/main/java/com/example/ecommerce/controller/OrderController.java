@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,5 +68,16 @@ public class OrderController {
 		Users user = passwordservice.getUser(email);
 		List<Orders> userorder = orderservice.fetchOrderByUser(user);
 		return userorder;
+	}
+	
+	@GetMapping("/api/admin/fetchorders")
+	public List<Orders> fetchOrders(){
+		return orderservice.fetchOrders();
+	}
+	
+	@DeleteMapping("/api/user/cancelorder/{orderid}")
+	public ResponseEntity<String> cancelOrder(@PathVariable long orderid){
+		ResponseEntity<String> status = orderservice.cancelOrder(orderid);
+		return ResponseEntity.status(status.getStatusCode()).body(status.getBody());
 	}
 }

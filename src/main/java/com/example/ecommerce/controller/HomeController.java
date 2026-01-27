@@ -2,10 +2,12 @@ package com.example.ecommerce.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ecommerce.model.Admins;
 import com.example.ecommerce.model.Users;
+import com.example.ecommerce.service.CommentService;
 import com.example.ecommerce.service.JwtService;
 import com.example.ecommerce.service.PasswordService;
 
@@ -17,10 +19,13 @@ public class HomeController {
 	
 	private JwtService jwtservice;
 	private PasswordService passservice;
+	private CommentService commentservice;
 	
-	public HomeController(JwtService jwtservice,PasswordService passservice) {
+	public HomeController(JwtService jwtservice,PasswordService passservice,
+			CommentService commentservice) {
 		this.jwtservice = jwtservice;
 		this.passservice = passservice;
+		this.commentservice = commentservice;
 	}
 	
 	@GetMapping("/api/user/home")
@@ -41,5 +46,11 @@ public class HomeController {
 		String email = jwtservice.extractEmail(token);
 		Admins admin = passservice.getAdmin(email);
 		return "Welcome , "+admin.getAdminName();
+	}
+	
+	@GetMapping("/api/getuser/{id}")
+	public Users getUser(@PathVariable long id) {
+		Users user = commentservice.getUserById(id);
+		return user;
 	}
 }	

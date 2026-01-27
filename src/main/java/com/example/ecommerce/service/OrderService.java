@@ -2,6 +2,7 @@ package com.example.ecommerce.service;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +33,19 @@ public class OrderService {
 	
 	public List<Orders> fetchOrderByUser(Users user){
 		return orderrepo.findByUserid(user.getId());
+	}
+	
+	public List<Orders> fetchOrders(){
+		return orderrepo.findAll();
+	}
+	
+	public ResponseEntity<String> cancelOrder(long orderid){
+		Orders order = orderrepo.findById(orderid).orElse(null);
+		if(order == null)
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order details not found");
+		order.setOrder_status("CANCELLED");
+		order.setPayment_Status("REFUND");
+		orderrepo.save(order);
+		return ResponseEntity.ok("Order cancelled successfully");
 	}
 }

@@ -20,6 +20,7 @@ public class Orders {
 	private LocalDate orderdate;
 	private LocalTime ordertime;
 	private String payment_Status ="Success";
+	private String order_status = "NOT DELIVERED";
 	
 	public long getOrderid() {
 		return orderid;
@@ -56,5 +57,11 @@ public class Orders {
 	}
 	public void setPayment_Status(String payment_Status) {
 		this.payment_Status = payment_Status;
+	}
+	public String getOrder_status() {
+		return order_status;
+	}
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
 	}
 }
