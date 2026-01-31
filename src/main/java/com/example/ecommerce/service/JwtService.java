@@ -88,7 +88,7 @@ public class JwtService {
     }
     
   //Sub method for validateToken() Method
-    private Date extractExpiration(String token) {
+    public Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
     
@@ -109,6 +109,4 @@ public class JwtService {
     public String extractRole(String token) {
         return extractClaim(token, claims -> claims.get("role", String.class));
     }
-
-    
 }

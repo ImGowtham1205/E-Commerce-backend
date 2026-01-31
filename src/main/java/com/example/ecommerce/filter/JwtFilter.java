@@ -2,7 +2,6 @@ package com.example.ecommerce.filter;
 
 import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +10,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.example.ecommerce.repository.BlackListTokenRepo;
 import com.example.ecommerce.service.JwtService;
 import com.example.ecommerce.service.UsersService;
 
@@ -21,11 +21,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 public class JwtFilter extends OncePerRequestFilter{
-	
-	@Autowired
+		
 	private JwtService jwtservice;
-	@Autowired
 	private ApplicationContext context;
+	private BlackListTokenRepo blacklistrepo;
+	
+	public JwtFilter(JwtService jwtservice,ApplicationContext context,BlackListTokenRepo blacklistrepo) {
+		this.jwtservice = jwtservice;
+		this.context = context;
+		this.blacklistrepo = blacklistrepo;
+	}
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -36,6 +41,12 @@ public class JwtFilter extends OncePerRequestFilter{
 		
 		if(authheader != null && authheader.startsWith("Bearer ")) {
 			token = authheader.substring(7);
+			
+			if (blacklistrepo.existsByToken(token)) {
+			    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token is invalidated");
+			    return;
+			}
+			
 			email = jwtservice.extractEmail(token);
 		}
 		

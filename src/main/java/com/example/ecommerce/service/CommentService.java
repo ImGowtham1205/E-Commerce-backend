@@ -7,19 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.ecommerce.model.Comment;
-import com.example.ecommerce.model.Users;
 import com.example.ecommerce.repository.CommentRepo;
-import com.example.ecommerce.repository.UserRepo;
 
 @Service
 public class CommentService {
 	
 	private CommentRepo commentrepo;
-	private UserRepo userrepo;
-	
-	public CommentService(CommentRepo commentrepo,UserRepo userrepo) {
+		
+	public CommentService(CommentRepo commentrepo) {
 		this.commentrepo = commentrepo;
-		this.userrepo = userrepo;
 	}
 	
 	public ResponseEntity<String> addComment(Comment cmt){
@@ -43,9 +39,5 @@ public class CommentService {
 	
 	public List<Comment> getCommentForproduct(long productid){
 		return commentrepo.findByProductid(productid);
-	}
-	
-	public Users getUserById(long id) {
-		return userrepo.findById(id);
 	}
 }

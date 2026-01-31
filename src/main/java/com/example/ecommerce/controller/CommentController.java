@@ -18,6 +18,7 @@ import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.CommentService;
 import com.example.ecommerce.service.JwtService;
 import com.example.ecommerce.service.PasswordService;
+import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -28,17 +29,19 @@ public class CommentController {
 	private JwtService jwtservice;
 	private PasswordService passservice;
 	private CommentService commentservice;
+	private UsersService userservice;
 	
 	public CommentController(JwtService jwtservice,PasswordService passservice
-			,CommentService commentservice) {
+			,CommentService commentservice,UsersService userservice) {
 		this.jwtservice = jwtservice;
 		this.passservice = passservice;
 		this.commentservice = commentservice;
+		this.userservice = userservice;
 	}
 	
 	@PostMapping("/api/user/addcomment")
 	public ResponseEntity<String> addComment(@RequestBody Comment cmt){
-		Users user = commentservice.getUserById(cmt.getUserid());
+		Users user = userservice.getUserById(cmt.getUserid());
 		cmt.setUsername(user.getName());
 		ResponseEntity<String> status = commentservice.addComment(cmt);
 		return ResponseEntity.status(status.getStatusCode()).body(status.getBody());
@@ -46,7 +49,7 @@ public class CommentController {
 	
 	@PutMapping("/api/user/updatecomment")
 	public ResponseEntity<String> updateComment(@RequestBody Comment cmt){
-		Users user = commentservice.getUserById(cmt.getUserid());
+		Users user = userservice.getUserById(cmt.getUserid());
 		cmt.setUsername(user.getName());
 		cmt.setReview(cmt.getReview());
 		ResponseEntity<String> status = commentservice.updateComment(cmt);

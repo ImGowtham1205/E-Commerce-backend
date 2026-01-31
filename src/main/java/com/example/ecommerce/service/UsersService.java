@@ -1,6 +1,5 @@
 package com.example.ecommerce.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,11 +14,13 @@ import com.example.ecommerce.repository.UserRepo;
 @Service
 public class UsersService implements UserDetailsService{
 
-	@Autowired
 	private UserRepo userrepo;
-	
-	@Autowired
 	private AdminRepo adminrepo;
+	
+	public UsersService(UserRepo userrepo,AdminRepo adminrepo) {
+		this.userrepo = userrepo;
+		this.adminrepo = adminrepo;
+	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -33,5 +34,9 @@ public class UsersService implements UserDetailsService{
 			return new UserPrincipal(admin);
 		
 		throw new UsernameNotFoundException("User Not Found");
+	}
+	
+	public Users getUserById(long id) {
+		return userrepo.findById(id);
 	}
 }

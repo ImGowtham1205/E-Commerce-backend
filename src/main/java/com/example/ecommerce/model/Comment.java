@@ -2,6 +2,7 @@ package com.example.ecommerce.model;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import tools.jackson.databind.annotation.JsonSerialize;
@@ -12,9 +13,11 @@ public class Comment {
 	@Id
 	@JsonSerialize(using = ToStringSerializer.class)
 	private ObjectId id;
+	@Indexed
 	private long userid;
 	private String review;
 	private String username;
+	@Indexed
 	private long productid;
 	
 	public ObjectId getId() {

@@ -11,4 +11,6 @@ import com.example.ecommerce.model.Cart;
 @Repository
 public interface CartRepo extends MongoRepository<Cart, ObjectId>{
 	List<Cart> findByUserId(long userid);
+	void deleteByUserId(Long userid);
+	void deleteByProductId(Long productid);
 }

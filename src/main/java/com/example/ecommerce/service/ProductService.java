@@ -8,15 +8,21 @@ import org.springframework.stereotype.Service;
 
 import com.example.ecommerce.model.Products;
 import com.example.ecommerce.projection.ProductView;
+import com.example.ecommerce.repository.CartRepo;
+import com.example.ecommerce.repository.CommentRepo;
 import com.example.ecommerce.repository.ProductRepo;
 
 @Service
 public class ProductService {
 	
 	private ProductRepo productrepo;
+	private CartRepo cartrepo;
+	private CommentRepo commentrepo;
 	
-	public ProductService(ProductRepo productrepo) {
+	public ProductService(ProductRepo productrepo,CartRepo cartrepo,CommentRepo commentrepo) {
 		this.productrepo = productrepo;
+		this.cartrepo = cartrepo;
+		this.commentrepo = commentrepo;
 	}
 	
 	public ResponseEntity<String> addProduct(Products product) {
@@ -39,6 +45,8 @@ public class ProductService {
 	
 	public ResponseEntity<String> deleteProduct(long id){
 		productrepo.deleteById(id);
+		cartrepo.deleteByProductId(id);
+		commentrepo.deleteByproductid(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Product deleted successfully");
 	}
 	

@@ -118,7 +118,7 @@ public class MailService {
 		sender.send(message);
 	}
 	
-	public void orderConfirmationMail(Products product,Users user,Orders order) {
+	protected void orderConfirmationMail(Products product,Users user,Orders order) {
 		String subject = "Order Confirmation – Your Order Has Been Successfully Placed";
 		String receiver = user.getEmail();
 		String body = "Dear "+user.getName()+",\r\n"
@@ -143,6 +143,54 @@ public class MailService {
 				+ "\r\n"
 				+ "Sincerely,\r\n"
 				+ "AzCart Team\r\n";
+		message.setSubject(subject);
+		message.setText(body);
+		message.setTo(receiver);
+		sender.send(message);
+	}
+	
+	protected void userAccountDeletionMail(Users user) {
+		String subject = "Confirmation of Account Deletion";
+		String reciever = user.getEmail();
+		String body = "Dear Valued Customer "+user.getName()+",\r\n"
+				+ "\r\n"
+				+ "We are writing to confirm that your account associated with this email address has been successfully deleted from our system, as per your request.\r\n"
+				+ "\r\n"
+				+ "Please note that this action is permanent. All personal information and account-related data linked to your profile have been removed in accordance with our data retention and privacy policies.\r\n"
+				+ "Kindly be informed that order history alone is securely retained for internal management, auditing, and legal compliance purposes, as required by applicable regulations.\r\n"
+				+ "\r\n"
+				+ "If you did not initiate this request or believe this action was taken in error, please contact our support team immediately for assistance.\r\n"
+				+ "\r\n"
+				+ "Thank you for using our services. We appreciate the time you spent with us and hope to serve you again in the future.\r\n"
+				+ "\r\n"
+				+ "Warm regards,\r\n"
+				+ "AzCart Support Team\r\n"
+				+ "Customer Support\r\n"
+				+ "AzCart";
+		message.setSubject(subject);
+		message.setText(body);
+		message.setTo(reciever);
+		sender.send(message);
+	}
+	
+	protected void adminAccountDeletionMail(Admins admin) {
+		String subject = "Admin Account Deletion Notification";
+		String receiver = admin.getEmail();
+		String body = "Dear Administrator "+admin.getAdminName()+",\r\n"
+				+ "\r\n"
+				+ "This email is to inform you that a user account has been successfully deleted from the system following a valid deletion request.\r\n"
+				+ "\r\n"
+				+ "The account associated with the registered email address has been permanently removed. All personal and account-related information has been deleted in accordance with the organization’s data retention and privacy policies.\r\n"
+				+ "Please note that order history has been securely retained for internal management, auditing, and compliance purposes only.\r\n"
+				+ "\r\n"
+				+ "No further action is required at this time. This notification is provided for administrative awareness and record-keeping.\r\n"
+				+ "\r\n"
+				+ "If additional verification or review is necessary, please refer to the system logs or contact the support team.\r\n"
+				+ "\r\n"
+				+ "Regards,\r\n"
+				+ "AzCart System Notification\r\n"
+				+ "Administration & Support\r\n"
+				+ "AzCart";
 		message.setSubject(subject);
 		message.setText(body);
 		message.setTo(receiver);

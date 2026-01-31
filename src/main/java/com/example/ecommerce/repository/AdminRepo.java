@@ -8,4 +8,6 @@ import com.example.ecommerce.model.Admins;
 @Repository
 public interface AdminRepo extends JpaRepository<Admins, Long>{
 	Admins findByEmail(String email);
+	void deleteByEmail(String email);
+	boolean existsByEmail(String email);
 }

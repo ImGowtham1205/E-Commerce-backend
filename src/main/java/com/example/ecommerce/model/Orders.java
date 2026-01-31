@@ -16,11 +16,14 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long orderid;
 	private long productid;
-	private long userid;
 	private LocalDate orderdate;
 	private LocalTime ordertime;
 	private String payment_Status ="Success";
 	private String order_status = "NOT DELIVERED";
+	private String username;
+	private String address;
+	private String phoneno;
+	private long userid;
 	
 	public long getOrderid() {
 		return orderid;
@@ -33,12 +36,6 @@ public class Orders {
 	}
 	public void setProductid(long productid) {
 		this.productid = productid;
-	}
-	public long getUserid() {
-		return userid;
-	}
-	public void setUserid(long userid) {
-		this.userid = userid;
 	}
 	public LocalDate getOrderdate() {
 		return orderdate;
@@ -63,5 +60,29 @@ public class Orders {
 	}
 	public void setOrder_status(String order_status) {
 		this.order_status = order_status;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getPhoneno() {
+		return phoneno;
+	}
+	public void setPhoneno(String phoneno) {
+		this.phoneno = phoneno;
+	}
+	public long getUserid() {
+		return userid;
+	}
+	public void setUserid(long userid) {
+		this.userid = userid;
 	}
 }

@@ -16,26 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ecommerce.model.Orders;
 import com.example.ecommerce.model.Products;
 import com.example.ecommerce.model.Users;
-import com.example.ecommerce.service.CommentService;
 import com.example.ecommerce.service.JwtService;
 import com.example.ecommerce.service.OrderService;
 import com.example.ecommerce.service.PasswordService;
 import com.example.ecommerce.service.ProductService;
+import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 public class OrderController {
 	
-	private CommentService commentservice;
+	private UsersService userservice;
 	private OrderService orderservice;
 	private ProductService productservice;
 	private JwtService jwtservice;
 	private PasswordService passwordservice;
 	
-	public OrderController(CommentService commentservice,OrderService orderservice,
+	public OrderController(UsersService userservice,OrderService orderservice,
 			ProductService productservice,JwtService jwtservice,PasswordService passwordservice) {
-		this.commentservice = commentservice;
+		this.userservice = userservice;
 		this.orderservice = orderservice;
 		this.productservice = productservice;
 		this.jwtservice = jwtservice;
@@ -46,13 +46,16 @@ public class OrderController {
 	public ResponseEntity<String> purchaseProduct(@PathVariable long productid,
 			@RequestBody Map<String,Long> body){
 		long userid = body.get("userid");
-		Users user = commentservice.getUserById(userid);
+		Users user = userservice.getUserById(userid);
 		Orders order = new Orders();
 		
 		order.setUserid(userid);
 		order.setProductid(productid);
 		order.setOrderdate(LocalDate.now());
 		order.setOrdertime(LocalTime.now());
+		order.setAddress(user.getAddress());
+		order.setUsername(user.getName());
+		order.setPhoneno(user.getPhoneno());
 		
 		Products product = productservice.getProductById(productid);
 		product.setStock(product.getStock()-1);
