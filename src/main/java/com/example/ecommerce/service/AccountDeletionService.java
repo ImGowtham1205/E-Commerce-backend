@@ -67,7 +67,7 @@ public class AccountDeletionService {
 			return ResponseEntity.badRequest().body("Current Password doesn't match");
 	}
 	
-	private void blackListToken(String token) {
+	public void blackListToken(String token) {
 		BlackListedToken b = new BlackListedToken();
 		b.setToken(token);
 		b.setExiprytime(jwtservice.extractExpiration(token));
