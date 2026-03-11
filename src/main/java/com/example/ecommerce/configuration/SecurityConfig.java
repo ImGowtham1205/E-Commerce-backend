@@ -14,6 +14,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -21,6 +25,9 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.example.ecommerce.filter.JwtFilter;
+import com.example.ecommerce.oauth.OAuth2Service;
+import com.example.ecommerce.oauth.OAuthSuccessHandler;
+import com.example.ecommerce.oauth.ProcessOAuth2UsersService;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -30,10 +37,17 @@ public class SecurityConfig {
 
     private UserDetailsService user;
     private JwtFilter filter;
-
-    public SecurityConfig(UserDetailsService user ,JwtFilter filter) {
+    private OAuthSuccessHandler OAuthSuccess;
+    private OAuth2Service OAuthService;
+    private ProcessOAuth2UsersService oauthuserservice;
+    
+    public SecurityConfig(UserDetailsService user ,JwtFilter filter,OAuthSuccessHandler OAuthSuccess
+    		,OAuth2Service OAuthService,ProcessOAuth2UsersService oauthuserservice) {
     	this.user = user;
     	this.filter = filter;
+    	this.OAuthSuccess = OAuthSuccess;
+    	this.OAuthService = OAuthService;
+    	this.oauthuserservice = oauthuserservice;
     }
     
     @Bean
@@ -54,6 +68,11 @@ public class SecurityConfig {
                         .requestMatchers("/api/user/**").hasRole("USER")
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
+                )
+                .oauth2Login(oauth -> oauth
+                        .userInfoEndpoint(user -> user.userService(OAuthService)
+                        .oidcUserService(oidcUserService()))
+                        .successHandler(OAuthSuccess)
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -96,5 +115,25 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authentication(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
+    }
+    
+    @Bean
+    public OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService() {
+
+        OidcUserService delegate = new OidcUserService();
+
+        return userRequest -> {
+
+            OidcUser oidcUser = delegate.loadUser(userRequest);
+
+            String email = oidcUser.getEmail();
+            String name = oidcUser.getFullName();
+            String provider = userRequest.getClientRegistration().getRegistrationId().toUpperCase();
+            String providerid = oidcUser.getSubject();
+            
+            oauthuserservice.processOAuthUsers(email, name, provider, providerid);
+            
+            return oidcUser;
+        };
     }
 }

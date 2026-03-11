@@ -20,7 +20,7 @@ public class MailService {
 		this.sender=sender;
 	}
 	
-	protected void accountCreationMail(Users user) {
+	public void accountCreationMail(Users user) {
 		String subject = "Welcome to AzCart – Your Account Has Been Created Successfully 🎉";
 		String receiver = user.getEmail();
 		String body = "Dear "+user.getName()+",\r\n"
@@ -48,7 +48,7 @@ public class MailService {
 		sender.send(message);
 	}
 	
-	protected void forgotPasswordMail(Users user,String token) {
+	public void forgotPasswordMail(Users user,String token) {
 		String subject = "AZCART – Reset Your Password";
 		String receiver =  user.getEmail();
 		String url = "http://localhost:5173/reset-password?token="+token;
@@ -83,7 +83,7 @@ public class MailService {
 		sender.send(message);
 	}
 	
-	protected void forgotPasswordMail(Admins admin,String token) {
+	public void forgotPasswordMail(Admins admin,String token) {
 		String subject = "AZCART – Reset Your Password";
 		String receiver =  admin.getEmail();
 		String url = "http://localhost:5173/reset-password?token="+token;
@@ -118,7 +118,7 @@ public class MailService {
 		sender.send(message);
 	}
 	
-	protected void orderConfirmationMail(Products product,Users user,Orders order) {
+	public void orderConfirmationMail(Products product,Users user,Orders order) {
 		String subject = "Order Confirmation – Your Order Has Been Successfully Placed";
 		String receiver = user.getEmail();
 		String body = "Dear "+user.getName()+",\r\n"
@@ -149,7 +149,7 @@ public class MailService {
 		sender.send(message);
 	}
 	
-	protected void userAccountDeletionMail(Users user) {
+	public void userAccountDeletionMail(Users user) {
 		String subject = "Confirmation of Account Deletion";
 		String reciever = user.getEmail();
 		String body = "Dear Valued Customer "+user.getName()+",\r\n"
@@ -173,7 +173,7 @@ public class MailService {
 		sender.send(message);
 	}
 	
-	protected void adminAccountDeletionMail(Admins admin) {
+	public void adminAccountDeletionMail(Admins admin) {
 		String subject = "Admin Account Deletion Notification";
 		String receiver = admin.getEmail();
 		String body = "Dear Administrator "+admin.getAdminName()+",\r\n"

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ecommerce.model.Admins;
 import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.JwtService;
-import com.example.ecommerce.service.PasswordService;
+import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -16,11 +16,11 @@ import jakarta.servlet.http.HttpServletRequest;
 public class HomeController {
 	
 	private JwtService jwtservice;
-	private PasswordService passservice;
+	private UsersService userservice;
 	
-	public HomeController(JwtService jwtservice,PasswordService passservice) {
+	public HomeController(JwtService jwtservice,UsersService userservice) {
 		this.jwtservice = jwtservice;
-		this.passservice = passservice;
+		this.userservice = userservice;
 	}
 	
 	@GetMapping("/api/user/home")
@@ -29,7 +29,7 @@ public class HomeController {
 		if(token == null)
 			return null;
 		String email = jwtservice.extractEmail(token);
-		Users user = passservice.getUser(email);
+		Users user = userservice.getUser(email);
 		return "Welcome , "+user.getName();
 	}
 	
@@ -39,7 +39,7 @@ public class HomeController {
 		if(token == null)
 			return null;
 		String email = jwtservice.extractEmail(token);
-		Admins admin = passservice.getAdmin(email);
+		Admins admin = userservice.getAdmin(email);
 		return "Welcome , "+admin.getAdminName();
 	}
 }	

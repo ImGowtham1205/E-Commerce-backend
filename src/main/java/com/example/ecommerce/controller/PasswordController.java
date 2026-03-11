@@ -17,6 +17,7 @@ import com.example.ecommerce.model.PasswordResetToken;
 import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.JwtService;
 import com.example.ecommerce.service.PasswordService;
+import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -27,12 +28,14 @@ public class PasswordController {
 	private PasswordService passwordservice;
 	private PasswordEncoder encorder;
 	private JwtService jwtservice;
+	private UsersService userservice;
 	
 	public PasswordController(PasswordService passwordservice,PasswordEncoder encorder
-			,JwtService jwtservice) {
+			,JwtService jwtservice,UsersService userservice) {
 		this.passwordservice = passwordservice;
 		this.encorder = encorder;
 		this.jwtservice = jwtservice;
+		this.userservice = userservice;
 	}
 	
 	@PostMapping("/forgot-password")
@@ -91,7 +94,7 @@ public class PasswordController {
 		
 		String email = jwtservice.extractEmail(token);
 		
-		Users user = passwordservice.getUser(email);
+		Users user = userservice.getUser(email);
 		
 		if(!(passwordservice.checkCurrentPassword(user, currentPassword)))
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Current password doesn't match");
@@ -116,7 +119,7 @@ public class PasswordController {
 		
 		String email = jwtservice.extractEmail(token);
 		
-		Admins admin = passwordservice.getAdmin(email);
+		Admins admin = userservice.getAdmin(email);
 		
 		if(!(passwordservice.checkCurrentPassword(admin, currentPassword)))
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Current password doesn't match");

@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name ="users",uniqueConstraints = @UniqueConstraint(columnNames = {"email","phoneno"}),
+@Table(name ="users",uniqueConstraints = @UniqueConstraint(columnNames = {"email"}),
  		indexes = {@Index(name = "idx_users_email", columnList = "email")})
 
 public class Users {
@@ -22,27 +22,33 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name="uname",nullable = false)
+	@Column(name="uname")
 	private String name;
 	
-	@Column(name="email",nullable = false)
+	@Column(name="email")
 	private String email;
 	
-	@Column(name="phoneno",nullable = false)
+	@Column(name="phoneno")
 	private String phoneno;
 	
-	@Column(name="pass",nullable = false)
+	@Column(name="pass")
 	private String password;
 	
-	@Column(name="role",nullable = false)
+	@Column(name="role")
 	private String role = "USER";
 	
-	@Column(name="address",nullable = false,length = 700)
+	@Column(name="address",length = 700)
 	private String address;
+	
+	@Column(name = "is_profile_completed")
+	private boolean profileCompleted;
 	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE,orphanRemoval = true)
 	private List<PasswordResetToken> token;
-		
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE,orphanRemoval = true)
+	private List<OAuthProviders> oauthProviders;
+	
 	public long getId() {
 		return id;
 	}
@@ -84,5 +90,12 @@ public class Users {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public boolean isProfileCompleted() {
+		return profileCompleted;
+	}
+	public void setProfileCompleted(boolean profileCompleted) {
+		this.profileCompleted = profileCompleted;
 	}	
+	
 }

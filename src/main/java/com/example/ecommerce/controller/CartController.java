@@ -15,7 +15,7 @@ import com.example.ecommerce.model.Cart;
 import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.CartService;
 import com.example.ecommerce.service.JwtService;
-import com.example.ecommerce.service.PasswordService;
+import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -24,19 +24,19 @@ public class CartController {
 	
 	private CartService cartservice;
 	private JwtService jwtservice;
-	private PasswordService passservice;
+	private UsersService userservice;
 	
-	public CartController(CartService cartservice,JwtService jwtservice,PasswordService passservice) {
+	public CartController(CartService cartservice,JwtService jwtservice,UsersService userservice) {
 		this.cartservice = cartservice;
 		this.jwtservice = jwtservice;
-		this.passservice = passservice;
+		this.userservice = userservice;
 	}
 	
 	@PostMapping("/api/user/addtocart")
 	public ResponseEntity<String> addCart(@RequestBody Cart cart,HttpServletRequest request){
 		String token = jwtservice.getToken(request);
 		String email = jwtservice.extractEmail(token);
-		Users user = passservice.getUser(email);
+		Users user = userservice.getUser(email);
 		cart.setUserId(user.getId());
 		ResponseEntity<String> status = cartservice.addCart(cart);
 		return ResponseEntity.ok(status.getBody());
@@ -46,7 +46,7 @@ public class CartController {
 	public List<Cart> fetchCartItemsByUser(HttpServletRequest request){
 		String token = jwtservice.getToken(request);
 		String email = jwtservice.extractEmail(token);
-		Users user = passservice.getUser(email);
+		Users user = userservice.getUser(email);
 		long userid = user.getId();
 		return cartservice.fetchCartProduct(userid);
 	}

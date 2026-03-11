@@ -17,7 +17,6 @@ import com.example.ecommerce.model.Comment;
 import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.CommentService;
 import com.example.ecommerce.service.JwtService;
-import com.example.ecommerce.service.PasswordService;
 import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,14 +26,12 @@ import jakarta.servlet.http.HttpServletRequest;
 public class CommentController {
 	
 	private JwtService jwtservice;
-	private PasswordService passservice;
 	private CommentService commentservice;
 	private UsersService userservice;
 	
-	public CommentController(JwtService jwtservice,PasswordService passservice
-			,CommentService commentservice,UsersService userservice) {
+	public CommentController(JwtService jwtservice,CommentService commentservice
+			,UsersService userservice) {
 		this.jwtservice = jwtservice;
-		this.passservice = passservice;
 		this.commentservice = commentservice;
 		this.userservice = userservice;
 	}
@@ -79,7 +76,7 @@ public class CommentController {
 	public ResponseEntity<Long> getUserId(HttpServletRequest request) {
 		String token = jwtservice.getToken(request);
 		String eamil = jwtservice.extractEmail(token);
-		Users user = passservice .getUser(eamil);
+		Users user = userservice .getUser(eamil);
 		long id = user.getId();
 		return ResponseEntity.ok(id);
 	}

@@ -22,7 +22,7 @@ public class JwtService {
 		
 	@Value("${jwt.secret}")
 	private String secretkey;
-		
+	
 	//This method is use to generate jwt token
 	public String generateToken(String email,String role) {
 		

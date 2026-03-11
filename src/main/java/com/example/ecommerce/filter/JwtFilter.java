@@ -2,7 +2,6 @@ package com.example.ecommerce.filter;
 
 import java.io.IOException;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,17 +22,17 @@ import jakarta.servlet.http.HttpServletResponse;
 public class JwtFilter extends OncePerRequestFilter{
 		
 	private JwtService jwtservice;
-	private ApplicationContext context;
+	private UsersService userservice;
 	private BlackListTokenRepo blacklistrepo;
 	
-	public JwtFilter(JwtService jwtservice,ApplicationContext context,BlackListTokenRepo blacklistrepo) {
+	public JwtFilter(JwtService jwtservice,UsersService userservice,BlackListTokenRepo blacklistrepo) {
 		this.jwtservice = jwtservice;
-		this.context = context;
+		this.userservice = userservice;
 		this.blacklistrepo = blacklistrepo;
 	}
 	
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+	public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String authheader = request.getHeader("Authorization");
 		String token = null;
@@ -43,7 +42,7 @@ public class JwtFilter extends OncePerRequestFilter{
 			token = authheader.substring(7);
 			
 			if (blacklistrepo.existsByToken(token)) {
-			    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token is invalidated");
+			    response.sendError(HttpServletResponse.SC_FORBIDDEN, "Token is invalidated");
 			    return;
 			}
 			
@@ -51,7 +50,7 @@ public class JwtFilter extends OncePerRequestFilter{
 		}
 		
 		if(email != null && SecurityContextHolder.getContext().getAuthentication()==null) {
-			UserDetails userdetails = context.getBean(UsersService.class).loadUserByUsername(email);
+			UserDetails userdetails = userservice.loadUserByUsername(email);
 			
 			if(jwtservice.validateToken(token,userdetails)) {
 				UsernamePasswordAuthenticationToken authtoken =

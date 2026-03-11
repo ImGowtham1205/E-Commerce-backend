@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.AuthenticationService;
 import com.example.ecommerce.service.JwtService;
-
-import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
@@ -29,7 +28,7 @@ public class LoginController {
 	}
 	
 		@PostMapping("/login")
-		public ResponseEntity<?> login(@RequestBody Users user,HttpServletResponse response) {
+		public ResponseEntity<?> login(@RequestBody Users user) throws AuthenticationException{
 			ResponseEntity<String> status = authservice.verify(user);
 			if(status.getStatusCode() == HttpStatus.OK) {
 				String email = user.getEmail();

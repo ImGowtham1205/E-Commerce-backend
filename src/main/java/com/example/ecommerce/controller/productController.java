@@ -1,10 +1,8 @@
 package com.example.ecommerce.controller;
 
 import java.io.IOException;
-
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,38 +31,28 @@ public class ProductController {
 	
 	@PostMapping("/api/admin/addproduct")
 	public ResponseEntity<String> addProducts(@RequestPart Products product,
-			@RequestPart (required = false) MultipartFile file){
+			@RequestPart MultipartFile file) throws IOException{
 		
 		ResponseEntity<String> status = null;
-		try {
 			product.setImagename(file.getOriginalFilename());
 			product.setImagetype(file.getContentType());
 			product.setImagedata(file.getBytes());
 			status = productservice.addProduct(product);
-		}catch (IOException e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add product");
-		}
 		
 		return ResponseEntity.status(status.getStatusCode()).body(status.getBody());
 	}
 	
-	
 	@PutMapping("/api/admin/updateproduct")
 	public ResponseEntity<String> updateProduct(@RequestPart Products product , 
-			@RequestPart(required = false) MultipartFile file){
+			@RequestPart(required = false) MultipartFile file) throws IOException{
 		ResponseEntity<String> status = null;
-		try {
+		
 			if(file != null && !file.isEmpty()) {
 				product.setImagename(file.getOriginalFilename());
 				product.setImagetype(file.getContentType());
 				product.setImagedata(file.getBytes());
 			}			
 			status = productservice.updateProduct(product);
-		}catch(IOException e) {
-			e.printStackTrace();
-			return ResponseEntity.internalServerError().body("Failed to Update product");
-		}
 			
 		return ResponseEntity.ok(status.getBody());
 	}

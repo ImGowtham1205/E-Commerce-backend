@@ -39,4 +39,16 @@ public class UsersService implements UserDetailsService{
 	public Users getUserById(long id) {
 		return userrepo.findById(id);
 	}
+	
+	public void updateUserProfile(Users user) {
+		userrepo.save(user);
+	}
+	
+	public Users getUser(String email) {
+		return userrepo.findByEmail(email);
+	}
+	
+	public Admins getAdmin(String email) {
+		return adminrepo.findByEmail(email);
+	}
 }

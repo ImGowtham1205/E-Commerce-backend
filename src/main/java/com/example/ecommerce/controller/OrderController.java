@@ -18,7 +18,6 @@ import com.example.ecommerce.model.Products;
 import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.JwtService;
 import com.example.ecommerce.service.OrderService;
-import com.example.ecommerce.service.PasswordService;
 import com.example.ecommerce.service.ProductService;
 import com.example.ecommerce.service.UsersService;
 
@@ -31,15 +30,13 @@ public class OrderController {
 	private OrderService orderservice;
 	private ProductService productservice;
 	private JwtService jwtservice;
-	private PasswordService passwordservice;
 	
 	public OrderController(UsersService userservice,OrderService orderservice,
-			ProductService productservice,JwtService jwtservice,PasswordService passwordservice) {
+			ProductService productservice,JwtService jwtservice) {
 		this.userservice = userservice;
 		this.orderservice = orderservice;
 		this.productservice = productservice;
 		this.jwtservice = jwtservice;
-		this.passwordservice = passwordservice;
 	}
 	
 	@PostMapping("/api/user/purchase/{productid}")
@@ -68,7 +65,7 @@ public class OrderController {
 	public List<Orders> fetchOrder(HttpServletRequest request){
 		String token = jwtservice.getToken(request);
 		String email = jwtservice.extractEmail(token);
-		Users user = passwordservice.getUser(email);
+		Users user = userservice.getUser(email);
 		List<Orders> userorder = orderservice.fetchOrderByUser(user);
 		return userorder;
 	}

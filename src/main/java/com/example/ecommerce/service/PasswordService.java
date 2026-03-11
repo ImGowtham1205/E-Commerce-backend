@@ -26,26 +26,28 @@ public class PasswordService {
 	private PasswordEncoder encorder;
 	private AdminRepo adminrepo;
 	private AdminPasswordResetTokenRepo adminpassrepo;
+	private UsersService userservice;
 	
 	public PasswordService(UserRepo userrepo,PasswordResetTokenRepo passwordrepo,
 			MailService mailservice,PasswordEncoder encorder,AdminRepo adminrepo,
-			AdminPasswordResetTokenRepo adminpassrepo) {
+			AdminPasswordResetTokenRepo adminpassrepo,UsersService userservice) {
 		this.userrepo = userrepo;
 		this.passwordrepo = passwordrepo;
 		this.mailservice = mailservice;
 		this.encorder = encorder;
 		this.adminrepo = adminrepo;
 		this.adminpassrepo = adminpassrepo;
+		this.userservice = userservice;
 	}
 	
 	public ResponseEntity<String> forgotPassword(String email) {
 		String token = UUID.randomUUID().toString();
 		Users user =null;
 		Admins admin =null;
-		user = getUser(email);
+		user = userservice.getUser(email);
 		
 		if(user == null) {
-			admin = getAdmin(email);
+			admin = userservice.getAdmin(email);
 			if(admin == null)
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Please Enter Your Registered Email");
 		}
@@ -101,14 +103,6 @@ public class PasswordService {
 	public void deleteToken(AdminPasswordResetToken prt) {
 		long id = prt.getId();
 		adminpassrepo.deleteById(id);
-	}
-	
-	public Users getUser(String email) {
-		return userrepo.findByEmail(email);
-	}
-	
-	public Admins getAdmin(String email) {
-		return adminrepo.findByEmail(email);
 	}
 	
 	public boolean checkCurrentPassword(Users user ,String currentPassword) {
