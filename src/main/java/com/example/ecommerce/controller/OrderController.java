@@ -1,7 +1,5 @@
 package com.example.ecommerce.controller;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -41,22 +39,19 @@ public class OrderController {
 	
 	@PostMapping("/api/user/purchase/{productid}")
 	public ResponseEntity<String> purchaseProduct(@PathVariable long productid,
-			@RequestBody Map<String,Long> body){
-		long userid = body.get("userid");
-		Users user = userservice.getUserById(userid);
-		Orders order = new Orders();
+			@RequestBody Map<String,Object> body){
 		
-		order.setUserid(userid);
-		order.setProductid(productid);
-		order.setOrderdate(LocalDate.now());
-		order.setOrdertime(LocalTime.now());
-		order.setAddress(user.getAddress());
-		order.setUsername(user.getName());
-		order.setPhoneno(user.getPhoneno());
+		long userid = Long.parseLong(body.get("userid").toString());
+		String paymentmethod = body.get("paymentmethod").toString();
 		
-		Products product = productservice.getProductById(productid);
-		product.setStock(product.getStock()-1);
-		
+		 Users user = userservice.getUserById(userid);
+		 Products product = productservice.getProductById(productid);
+
+		 String paymentStatus = paymentmethod.equals("COD") ? "NOT_PAIDED" : "PAID";
+
+		 Orders order = orderservice.buildOrder(productid, user, paymentmethod, paymentStatus, null);
+
+		product.setStock(product.getStock() - 1);
 		ResponseEntity<String> status = orderservice.placeOrder(order,product,user);
 		return ResponseEntity.status(status.getStatusCode()).body(status.getBody());
 	}

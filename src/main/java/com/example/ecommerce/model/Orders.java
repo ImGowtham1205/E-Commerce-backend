@@ -18,15 +18,23 @@ public class Orders {
 	private long productid;
 	private LocalDate orderdate;
 	private LocalTime ordertime;
-	private String payment_Status ="Success";
+	private String payment_Status;
 	private String order_status = "NOT DELIVERED";
 	private String username;
 	private String address;
 	private String phoneno;
 	private long userid;
+	private String paymentmethod;
+	private String paymentid;
 	
 	public long getOrderid() {
 		return orderid;
+	}
+	public String getPaymentmethod() {
+		return paymentmethod;
+	}
+	public void setPaymentmethod(String paymentmethod) {
+		this.paymentmethod = paymentmethod;
 	}
 	public void setOrderid(long orderid) {
 		this.orderid = orderid;
@@ -84,5 +92,11 @@ public class Orders {
 	}
 	public void setUserid(long userid) {
 		this.userid = userid;
+	}
+	public String getPaymentid() {
+		return paymentid;
+	}
+	public void setPaymentid(String paymentid) {
+		this.paymentid = paymentid;
 	}
 }

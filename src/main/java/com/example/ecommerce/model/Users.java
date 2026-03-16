@@ -96,6 +96,5 @@ public class Users {
 	}
 	public void setProfileCompleted(boolean profileCompleted) {
 		this.profileCompleted = profileCompleted;
-	}	
-	
+	}		
 }

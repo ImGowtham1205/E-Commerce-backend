@@ -1,5 +1,7 @@
 package com.example.ecommerce.service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -47,5 +49,26 @@ public class OrderService {
 		order.setPayment_Status("REFUND");
 		orderrepo.save(order);
 		return ResponseEntity.ok("Order cancelled successfully");
+	}
+	
+	public Orders buildOrder(long productid, Users user, String paymentMethod, String paymentStatus, String paymentId) {
+	    
+	    Orders order = new Orders();
+
+	    order.setUserid(user.getId());
+	    order.setProductid(productid);
+	    order.setUsername(user.getName());
+	    order.setAddress(user.getAddress());
+	    order.setPhoneno(user.getPhoneno());
+	    order.setOrderdate(LocalDate.now());
+	    order.setOrdertime(LocalTime.now());
+	    order.setPaymentmethod(paymentMethod);
+	    order.setPayment_Status(paymentStatus);
+
+	    if(paymentId != null) {
+	        order.setPaymentid(paymentId);
+	    }
+
+	    return order;
 	}
 }

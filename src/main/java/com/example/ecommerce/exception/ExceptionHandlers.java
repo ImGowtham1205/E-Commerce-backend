@@ -8,6 +8,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.razorpay.RazorpayException;
+
 @RestControllerAdvice
 public class ExceptionHandlers {
 
@@ -20,6 +22,12 @@ public class ExceptionHandlers {
 	@ExceptionHandler(IOException.class)
 	public ResponseEntity<String> imageUploadException(){
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add product image");
+	}
+	
+	@ExceptionHandler(RazorpayException.class)
+	public ResponseEntity<String> paymentException(){
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body("razorpay service not available currently...");
 	}
 	
 }
