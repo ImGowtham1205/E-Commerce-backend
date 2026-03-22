@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Logs
+logs/
+*.log
+*.out
+*.err
+
+# Spring Boot logs
+*.log.*

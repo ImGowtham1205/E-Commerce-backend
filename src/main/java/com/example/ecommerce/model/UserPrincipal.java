@@ -18,7 +18,6 @@ public class UserPrincipal implements UserDetails{
 	public UserPrincipal(Users user){
 		this.user=user;
 	}
-	
 	public UserPrincipal(Admins admin) {
 		this.admin = admin;
 	}
@@ -30,7 +29,6 @@ public class UserPrincipal implements UserDetails{
 		else
 			return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	}
-
 	@Override
 	public @Nullable String getPassword() {		
 		return user!=null ?user.getPassword() : admin.getPassword();

@@ -12,11 +12,14 @@ import jakarta.persistence.Index;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "admins",uniqueConstraints = @UniqueConstraint(columnNames = {"email","phoneno"}),
 		indexes = {@Index(name = "idx_admins_email", columnList = "email")})
-
+@Getter
+@Setter
 public class Admins {
 	
 	@Id
@@ -40,47 +43,4 @@ public class Admins {
 	
 	@OneToMany(mappedBy = "admin",cascade = CascadeType.REMOVE,orphanRemoval = true)
 	private List<AdminPasswordResetToken> token;
-	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getAdminName() {
-		return adminName;
-	}
-	public void setAdminName(String adminName) {
-		this.adminName = adminName;
-	}
-	public String getPhoneno() {
-		return phoneno;
-	}
-	public void setPhoneno(String phoneno) {
-		this.phoneno = phoneno;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-		
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-	@Override
-	public String toString() {
-		return "Admins [id=" + id + ", adminName=" + adminName + ", phoneno=" + phoneno + ", email=" + email
-				+ ", password=" + password + "]";
-	}
 }

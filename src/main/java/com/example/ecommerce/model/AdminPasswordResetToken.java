@@ -8,9 +8,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "admin_password_token")
+@Getter
+@Setter
 public class AdminPasswordResetToken {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,37 +27,4 @@ public class AdminPasswordResetToken {
 	public boolean isExipry() {
 		return expirydate.isBefore(LocalDateTime.now());
 	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public LocalDateTime getExpirydate() {
-		return expirydate;
-	}
-
-	public void setExpirydate(LocalDateTime expirydate) {
-		this.expirydate = expirydate;
-	}
-
-	public Admins getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Admins admin) {
-		this.admin = admin;
-	}
-	
 }

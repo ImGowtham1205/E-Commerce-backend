@@ -8,9 +8,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "password_token")
+@Getter
+@Setter
 public class PasswordResetToken {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,36 +28,4 @@ public class PasswordResetToken {
 	public boolean isExpiry() {
 		return expiryTime.isBefore(LocalDateTime.now());
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public LocalDateTime getExpiryTime() {
-		return expiryTime;
-	}
-
-	public void setExpiryTime(LocalDateTime expiryTime) {
-		this.expiryTime = expiryTime;
-	}
-
-	public Users getUser() {
-		return user;
-	}
-
-	public void setUser(Users user) {
-		this.user = user;
-	}	
 }

@@ -5,10 +5,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Getter;
+import lombok.Setter;
 import tools.jackson.databind.annotation.JsonSerialize;
 import tools.jackson.databind.ser.std.ToStringSerializer;
 
 @Document(collection = "comment")
+@Getter
+@Setter
 public class Comment {
 	@Id
 	@JsonSerialize(using = ToStringSerializer.class)
@@ -19,35 +23,4 @@ public class Comment {
 	private String username;
 	@Indexed
 	private long productid;
-	
-	public ObjectId getId() {
-		return id;
-	}
-	public void setId(ObjectId id) {
-		this.id = id;
-	}
-	public long getUserid() {
-		return userid;
-	}
-	public void setUserid(long userid) {
-		this.userid = userid;
-	}
-	public String getReview() {
-		return review;
-	}
-	public void setReview(String review) {
-		this.review = review;
-	}
-	public long getProductid() {
-		return productid;
-	}
-	public void setProductid(long productid) {
-		this.productid = productid;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
 }

@@ -8,10 +8,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "oauth_providers",
 	uniqueConstraints = {@UniqueConstraint(columnNames = {"providerid"})})
+@Getter
+@Setter
 public class OAuthProviders {
 
 	@Id
@@ -19,32 +23,7 @@ public class OAuthProviders {
 	private long id;
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private Users user;
+	private Users userid;
 	private String provider;
 	private String providerid;
-	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public Users getUserid() {
-		return user;
-	}
-	public void setUserid(Users user) {
-		this.user = user;
-	}
-	public String getProvider() {
-		return provider;
-	}
-	public void setProvider(String provider) {
-		this.provider = provider;
-	}
-	public String getProviderid() {
-		return providerid;
-	}
-	public void setProviderid(String providerid) {
-		this.providerid = providerid;
-	}	
 }
