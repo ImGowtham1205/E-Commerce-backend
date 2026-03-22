@@ -2,7 +2,6 @@ package com.example.ecommerce.configuration;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.SimpleMailMessage;
@@ -41,12 +40,7 @@ public class SecurityConfig {
     private OAuthSuccessHandler OAuthSuccess;
     private OAuth2Service OAuthService;
     private ProcessOAuth2UsersService oauthuserservice;
-    
-    @Value("${paypal.client.id}")
-    private String clientId;
-    @Value("${paypal.client.secret}")
-    private String clientSecret;
-    
+      
     public SecurityConfig(UserDetailsService user ,JwtFilter filter,OAuthSuccessHandler OAuthSuccess
     		,OAuth2Service OAuthService,ProcessOAuth2UsersService oauthuserservice) {
     	this.user = user;

@@ -26,12 +26,14 @@ public class UsersService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
 		Users user = userrepo.findByEmail(email);
-		if(user != null)
+		if(user != null) {
 			return new UserPrincipal(user);
+		}
 		
 		Admins admin = adminrepo.findByEmail(email);
-		if(admin != null)
+		if(admin != null) {
 			return new UserPrincipal(admin);
+		}
 		
 		throw new UsernameNotFoundException("User Not Found");
 	}

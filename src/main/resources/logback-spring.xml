@@ -1,0 +1,68 @@
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss} -> [%level] %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/app.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+
+            <!-- Daily + index -->
+            <fileNamePattern>logs/app.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+            <!-- Max size per file -->
+            <maxFileSize>10MB</maxFileSize>
+
+            <!-- Keep 7 days -->
+            <maxHistory>7</maxHistory>
+
+            <!-- Total disk usage cap -->
+            <totalSizeCap>100MB</totalSizeCap>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%level] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="PERF_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/performance.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+
+            <!-- Daily + index -->
+            <fileNamePattern>logs/performance.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+            <!-- Smaller size for performance logs -->
+            <maxFileSize>5MB</maxFileSize>
+
+            <!-- Keep 7 days -->
+            <maxHistory>7</maxHistory>
+
+            <!-- Total cap -->
+            <totalSizeCap>50MB</totalSizeCap>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="APP_FILE"/>
+    </root>
+
+    <logger name="PERFORMANCE_LOGGER"
+            level="INFO"
+            additivity="false">
+        <appender-ref ref="PERF_FILE"/>
+    </logger>
+
+</configuration>

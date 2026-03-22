@@ -18,6 +18,7 @@ import com.example.ecommerce.service.JwtService;
 import com.example.ecommerce.service.OrderService;
 import com.example.ecommerce.service.ProductService;
 import com.example.ecommerce.service.UsersService;
+import com.razorpay.RazorpayException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -71,7 +72,7 @@ public class OrderController {
 	}
 	
 	@DeleteMapping("/api/user/cancelorder/{orderid}")
-	public ResponseEntity<String> cancelOrder(@PathVariable long orderid){
+	public ResponseEntity<String> cancelOrder(@PathVariable long orderid) throws RazorpayException{
 		ResponseEntity<String> status = orderservice.cancelOrder(orderid);
 		return ResponseEntity.status(status.getStatusCode()).body(status.getBody());
 	}

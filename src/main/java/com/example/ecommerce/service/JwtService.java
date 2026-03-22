@@ -15,13 +15,22 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class JwtService {
-		
+	
 	@Value("${jwt.secret}")
 	private String secretkey;
+	
+	private SecretKey key;
+	
+	@PostConstruct
+	public void init() {
+	    byte[] decoded = Decoders.BASE64.decode(secretkey);
+	    key = Keys.hmacShaKeyFor(decoded);
+	}
 	
 	//This method is use to generate jwt token
 	public String generateToken(String email,String role) {
@@ -42,8 +51,7 @@ public class JwtService {
 	
 	//This method is use to get Key for jwt token
 	private SecretKey getKey() {
-		 byte[] key=Decoders.BASE64.decode(secretkey);
-		return Keys.hmacShaKeyFor(key);
+		 return key;
 	}
 	
 	//This method is use to extract email from the token

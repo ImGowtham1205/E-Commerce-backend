@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,9 @@ import com.example.ecommerce.model.Orders;
 import com.example.ecommerce.model.Products;
 import com.example.ecommerce.model.Users;
 import com.example.ecommerce.repository.OrdersRepo;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
+import com.razorpay.Refund;
 
 @Service
 public class OrderService {
@@ -19,6 +24,11 @@ public class OrderService {
 	private OrdersRepo orderrepo;
 	private MailService mailservice;
 	private ProductService productservice;
+	
+	@Value("${razorpay.client.id}")
+	private String clientid;
+	@Value("${razorpay.client.secret}")
+	private String clientsecret;
 	
 	public OrderService(OrdersRepo orderrepo,MailService mailservice,ProductService productservice) {
 		this.mailservice =mailservice;
@@ -41,12 +51,24 @@ public class OrderService {
 		return orderrepo.findAll();
 	}
 	
-	public ResponseEntity<String> cancelOrder(long orderid){
+	public ResponseEntity<String> cancelOrder(long orderid) throws RazorpayException{
 		Orders order = orderrepo.findById(orderid).orElse(null);
 		if(order == null)
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order details not found");
+		if("RAZORPAY".equals(order.getPaymentmethod())) {
+			RazorpayClient client = new RazorpayClient(clientid, clientsecret);
+			JSONObject refundreq = new JSONObject();
+			refundreq.put("payment_id", order.getPaymentid());
+			Refund refund = client.payments.refund(order.getPaymentid(), refundreq);
+			String refundid = refund.get("id");
+			String status = refund.get("status");
+			order.setPayment_Status("REFUNDED");
+			order.setRefundid(refundid);
+			order.setRefundstatus(status);
+		}
+		else
+			order.setPayment_Status("CANCELLED");
 		order.setOrder_status("CANCELLED");
-		order.setPayment_Status("REFUND");
 		orderrepo.save(order);
 		return ResponseEntity.ok("Order cancelled successfully");
 	}

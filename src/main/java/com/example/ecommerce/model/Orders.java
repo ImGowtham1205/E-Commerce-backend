@@ -26,6 +26,8 @@ public class Orders {
 	private long userid;
 	private String paymentmethod;
 	private String paymentid;
+	private String refundid;
+	private String refundstatus;
 	
 	public long getOrderid() {
 		return orderid;
@@ -98,5 +100,17 @@ public class Orders {
 	}
 	public void setPaymentid(String paymentid) {
 		this.paymentid = paymentid;
+	}
+	public String getRefundid() {
+		return refundid;
+	}
+	public void setRefundid(String refundid) {
+		this.refundid = refundid;
+	}
+	public String getRefundstatus() {
+		return refundstatus;
+	}
+	public void setRefundstatus(String refundstatus) {
+		this.refundstatus = refundstatus;
 	}
 }

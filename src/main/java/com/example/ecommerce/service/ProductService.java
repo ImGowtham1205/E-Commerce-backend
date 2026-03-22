@@ -44,9 +44,9 @@ public class ProductService {
 	}
 	
 	public ResponseEntity<String> deleteProduct(long id){
-		productrepo.deleteById(id);
 		cartrepo.deleteByProductId(id);
 		commentrepo.deleteByproductid(id);
+		productrepo.deleteById(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Product deleted successfully");
 	}
 	

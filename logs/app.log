@@ -1,0 +1,192 @@
+2026-03-20 11:23:13 [INFO] - Starting EcommerceApplication using Java 21.0.8 with PID 2684 (C:\Users\gowth\Documents\workspace-spring-tools\ecommerce\target\classes started by gowth in C:\Users\gowth\Documents\workspace-spring-tools\ecommerce)
+2026-03-20 11:23:13 [INFO] - No active profile set, falling back to 1 default profile: "default"
+2026-03-20 11:23:14 [INFO] - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-03-20 11:23:14 [INFO] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-20 11:23:14 [INFO] - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.CartRepo; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2026-03-20 11:23:14 [INFO] - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.CommentRepo; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2026-03-20 11:23:14 [INFO] - Finished Spring Data repository scanning in 151 ms. Found 8 JPA repository interfaces.
+2026-03-20 11:23:14 [INFO] - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-03-20 11:23:14 [INFO] - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2026-03-20 11:23:14 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.AdminPasswordResetTokenRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 11:23:14 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.AdminRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 11:23:14 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.BlackListTokenRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 11:23:14 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.OAuthProvidersRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 11:23:14 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.OrdersRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 11:23:14 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.PasswordResetTokenRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 11:23:14 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.ProductRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 11:23:14 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.UserRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 11:23:14 [INFO] - Finished Spring Data repository scanning in 32 ms. Found 2 MongoDB repository interfaces.
+2026-03-20 11:23:15 [INFO] - Tomcat initialized with port 8080 (http)
+2026-03-20 11:23:15 [INFO] - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-20 11:23:15 [INFO] - Starting service [Tomcat]
+2026-03-20 11:23:15 [INFO] - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-03-20 11:23:15 [INFO] - Root WebApplicationContext: initialization completed in 2741 ms
+2026-03-20 11:23:16 [INFO] - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-20 11:23:16 [INFO] - HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-03-20 11:23:17 [INFO] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-20 11:23:17 [INFO] - HikariPool-1 - Starting...
+2026-03-20 11:23:17 [INFO] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1bbc1b90
+2026-03-20 11:23:17 [INFO] - HikariPool-1 - Start completed.
+2026-03-20 11:23:17 [WARN] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-20 11:23:17 [INFO] - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/ecommerce]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.42
+	Default catalog/schema: ecommerce/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-20 11:23:19 [INFO] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-20 11:23:19 [INFO] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-20 11:23:20 [INFO] - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-20 11:23:20 [INFO] - MongoClient with metadata {"driver": {"name": "mongo-java-driver|spring-boot|sync", "version": "5.6.4"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Eclipse Adoptium/21.0.8+9-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@30a1b9b0, com.mongodb.Jep395RecordCodecProvider@16908f89, com.mongodb.KotlinCodecProvider@5ca8157c, EnumCodecProvider{}]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+2026-03-20 11:23:20 [INFO] - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=38233900, minRoundTripTimeNanos=0}
+2026-03-20 11:23:21 [INFO] - Global AuthenticationManager configured with AuthenticationProvider bean with name provider
+2026-03-20 11:23:21 [WARN] - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-20 11:23:22 [WARN] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-20 11:23:23 [INFO] - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-20 11:23:23 [INFO] - Tomcat started on port 8080 (http) with context path '/'
+2026-03-20 11:23:23 [INFO] - Started EcommerceApplication in 11.612 seconds (process running for 12.691)
+2026-03-20 11:24:20 [INFO] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-20 11:24:20 [INFO] - Initializing Servlet 'dispatcherServlet'
+2026-03-20 11:24:20 [INFO] - Completed initialization in 3 ms
+2026-03-20 11:33:25 [INFO] - Application shutdown requested.
+2026-03-20 11:33:25 [INFO] - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-20 11:33:25 [INFO] - Pausing ProtocolHandler ["http-nio-8080"]
+2026-03-20 11:33:25 [INFO] - Graceful shutdown complete
+2026-03-20 11:33:25 [INFO] - Stopping ProtocolHandler ["http-nio-8080"]
+2026-03-20 11:33:25 [INFO] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-20 11:33:25 [INFO] - HikariPool-1 - Shutdown initiated...
+2026-03-20 11:33:25 [INFO] - HikariPool-1 - Shutdown completed.
+2026-03-20 12:23:35 [INFO] - Starting EcommerceApplication using Java 21.0.8 with PID 19356 (C:\Users\gowth\Documents\workspace-spring-tools\ecommerce\target\classes started by gowth in C:\Users\gowth\Documents\workspace-spring-tools\ecommerce)
+2026-03-20 12:23:35 [INFO] - No active profile set, falling back to 1 default profile: "default"
+2026-03-20 12:23:37 [INFO] - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-03-20 12:23:37 [INFO] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-20 12:23:37 [INFO] - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.CartRepo; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2026-03-20 12:23:37 [INFO] - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.CommentRepo; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2026-03-20 12:23:37 [INFO] - Finished Spring Data repository scanning in 109 ms. Found 8 JPA repository interfaces.
+2026-03-20 12:23:37 [INFO] - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-03-20 12:23:37 [INFO] - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2026-03-20 12:23:37 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.AdminPasswordResetTokenRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:23:37 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.AdminRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:23:37 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.BlackListTokenRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:23:37 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.OAuthProvidersRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:23:37 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.OrdersRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:23:37 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.PasswordResetTokenRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:23:37 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.ProductRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:23:37 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.UserRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:23:37 [INFO] - Finished Spring Data repository scanning in 23 ms. Found 2 MongoDB repository interfaces.
+2026-03-20 12:23:38 [INFO] - Tomcat initialized with port 8080 (http)
+2026-03-20 12:23:38 [INFO] - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-20 12:23:38 [INFO] - Starting service [Tomcat]
+2026-03-20 12:23:38 [INFO] - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-03-20 12:23:38 [INFO] - Root WebApplicationContext: initialization completed in 2519 ms
+2026-03-20 12:23:38 [INFO] - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-20 12:23:38 [INFO] - HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-03-20 12:23:39 [INFO] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-20 12:23:39 [INFO] - HikariPool-1 - Starting...
+2026-03-20 12:23:40 [INFO] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5b1f0f26
+2026-03-20 12:23:40 [INFO] - HikariPool-1 - Start completed.
+2026-03-20 12:23:40 [WARN] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-20 12:23:40 [INFO] - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/ecommerce]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.42
+	Default catalog/schema: ecommerce/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-20 12:23:42 [INFO] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-20 12:23:42 [INFO] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-20 12:23:42 [INFO] - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-20 12:23:43 [INFO] - MongoClient with metadata {"driver": {"name": "mongo-java-driver|spring-boot|sync", "version": "5.6.4"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Eclipse Adoptium/21.0.8+9-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@62291850, com.mongodb.Jep395RecordCodecProvider@2518245b, com.mongodb.KotlinCodecProvider@45c8db36, EnumCodecProvider{}]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+2026-03-20 12:23:43 [INFO] - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=41501400, minRoundTripTimeNanos=0}
+2026-03-20 12:23:44 [INFO] - Global AuthenticationManager configured with AuthenticationProvider bean with name provider
+2026-03-20 12:23:44 [WARN] - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-20 12:23:45 [WARN] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-20 12:23:46 [INFO] - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-20 12:23:46 [INFO] - Tomcat started on port 8080 (http) with context path '/'
+2026-03-20 12:23:46 [INFO] - Started EcommerceApplication in 11.257 seconds (process running for 12.593)
+2026-03-20 12:24:22 [INFO] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-20 12:24:22 [INFO] - Initializing Servlet 'dispatcherServlet'
+2026-03-20 12:24:22 [INFO] - Completed initialization in 5 ms
+2026-03-20 12:28:38 [INFO] - Application shutdown requested.
+2026-03-20 12:28:38 [INFO] - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-20 12:28:38 [INFO] - Pausing ProtocolHandler ["http-nio-8080"]
+2026-03-20 12:28:38 [INFO] - Graceful shutdown complete
+2026-03-20 12:28:38 [INFO] - Stopping ProtocolHandler ["http-nio-8080"]
+2026-03-20 12:28:38 [INFO] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-20 12:28:38 [INFO] - HikariPool-1 - Shutdown initiated...
+2026-03-20 12:28:38 [INFO] - HikariPool-1 - Shutdown completed.
+2026-03-20 12:30:49 [INFO] - Starting EcommerceApplication using Java 21.0.8 with PID 3688 (C:\Users\gowth\Documents\workspace-spring-tools\ecommerce\target\classes started by gowth in C:\Users\gowth\Documents\workspace-spring-tools\ecommerce)
+2026-03-20 12:30:49 [INFO] - No active profile set, falling back to 1 default profile: "default"
+2026-03-20 12:30:50 [INFO] - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-03-20 12:30:50 [INFO] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-20 12:30:50 [INFO] - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.CartRepo; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2026-03-20 12:30:50 [INFO] - Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.CommentRepo; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2026-03-20 12:30:50 [INFO] - Finished Spring Data repository scanning in 135 ms. Found 8 JPA repository interfaces.
+2026-03-20 12:30:51 [INFO] - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-03-20 12:30:51 [INFO] - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2026-03-20 12:30:51 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.AdminPasswordResetTokenRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:30:51 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.AdminRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:30:51 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.BlackListTokenRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:30:51 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.OAuthProvidersRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:30:51 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.OrdersRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:30:51 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.PasswordResetTokenRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:30:51 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.ProductRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:30:51 [INFO] - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.ecommerce.repository.UserRepo; If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository
+2026-03-20 12:30:51 [INFO] - Finished Spring Data repository scanning in 39 ms. Found 2 MongoDB repository interfaces.
+2026-03-20 12:30:52 [INFO] - Tomcat initialized with port 8080 (http)
+2026-03-20 12:30:52 [INFO] - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-20 12:30:52 [INFO] - Starting service [Tomcat]
+2026-03-20 12:30:52 [INFO] - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-03-20 12:30:52 [INFO] - Root WebApplicationContext: initialization completed in 2817 ms
+2026-03-20 12:30:52 [INFO] - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-20 12:30:52 [INFO] - HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-03-20 12:30:53 [INFO] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-20 12:30:53 [INFO] - HikariPool-1 - Starting...
+2026-03-20 12:30:54 [INFO] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@51566ce0
+2026-03-20 12:30:54 [INFO] - HikariPool-1 - Start completed.
+2026-03-20 12:30:54 [WARN] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-20 12:30:54 [INFO] - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/ecommerce]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.42
+	Default catalog/schema: ecommerce/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-20 12:30:56 [INFO] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-20 12:30:56 [INFO] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-20 12:30:56 [INFO] - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-20 12:30:57 [INFO] - MongoClient with metadata {"driver": {"name": "mongo-java-driver|spring-boot|sync", "version": "5.6.4"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Eclipse Adoptium/21.0.8+9-LTS"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@1264dbc9, com.mongodb.Jep395RecordCodecProvider@77f2807f, com.mongodb.KotlinCodecProvider@47b6f580, EnumCodecProvider{}]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+2026-03-20 12:30:57 [INFO] - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=29155700, minRoundTripTimeNanos=0}
+2026-03-20 12:30:58 [INFO] - Global AuthenticationManager configured with AuthenticationProvider bean with name provider
+2026-03-20 12:30:58 [WARN] - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-20 12:30:59 [WARN] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-20 12:31:00 [INFO] - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-20 12:31:00 [INFO] - Tomcat started on port 8080 (http) with context path '/'
+2026-03-20 12:31:00 [INFO] - Started EcommerceApplication in 11.904 seconds (process running for 13.327)
+2026-03-20 12:31:30 [INFO] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-20 12:31:30 [INFO] - Initializing Servlet 'dispatcherServlet'
+2026-03-20 12:31:30 [INFO] - Completed initialization in 6 ms
+2026-03-20 12:32:28 [INFO] - Application shutdown requested.
+2026-03-20 12:32:28 [INFO] - Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-20 12:32:28 [INFO] - Pausing ProtocolHandler ["http-nio-8080"]
+2026-03-20 12:32:28 [INFO] - Graceful shutdown complete
+2026-03-20 12:32:28 [INFO] - Stopping ProtocolHandler ["http-nio-8080"]
+2026-03-20 12:32:29 [INFO] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-20 12:32:29 [INFO] - HikariPool-1 - Shutdown initiated...
+2026-03-20 12:32:29 [INFO] - HikariPool-1 - Shutdown completed.

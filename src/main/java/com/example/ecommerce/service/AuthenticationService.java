@@ -1,7 +1,5 @@
 package com.example.ecommerce.service;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,13 +24,8 @@ public class AuthenticationService {
 		return usersservice.loadUserByUsername(email);
 	}
 
-	public ResponseEntity<String> verify(Users user) throws AuthenticationException {
-		Authentication auth = manager
-				.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
-		if (auth.isAuthenticated())
-			return ResponseEntity.ok("Authentication Successfully");
-
-		else
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect mail id or password");
+	public Authentication verify(Users user) throws AuthenticationException {
+		return manager.authenticate
+				(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 	}
 }

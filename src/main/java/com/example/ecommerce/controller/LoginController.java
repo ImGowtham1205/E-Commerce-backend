@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,11 +30,11 @@ public class LoginController {
 	
 		@PostMapping("/login")
 		public ResponseEntity<?> login(@RequestBody Users user) throws AuthenticationException{
-			ResponseEntity<String> status = authservice.verify(user);
-			if(status.getStatusCode() == HttpStatus.OK) {
+			Authentication auth = authservice.verify(user);
+			if(auth.isAuthenticated()) {
+				UserDetails userdetails = (UserDetails) auth.getPrincipal();
 				String email = user.getEmail();
-				UserDetails userdetail = authservice.loadUser(email);
-				String role = userdetail.getAuthorities().iterator().next().getAuthority();
+				String role = userdetails.getAuthorities().iterator().next().getAuthority();
 				String token = jwtservice.generateToken(email,role);
 				return ResponseEntity.ok(Map.of("token",token,"role",role));
 			}	
