@@ -7,17 +7,14 @@ import com.example.ecommerce.service.AccountDeletionService;
 import com.example.ecommerce.service.JwtService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 
 @RestController
+@AllArgsConstructor
 public class LogoutController {
 	
 	private JwtService jwtservice;
 	private AccountDeletionService accountdeletionservice;
-	
-	public LogoutController(JwtService jwtservice,AccountDeletionService accountdeletionservice) {
-		this.jwtservice = jwtservice;
-		this.accountdeletionservice = accountdeletionservice;
-	}
 	
 	@PostMapping("/api/user/logout")
 	public void userLogout(HttpServletRequest request) {

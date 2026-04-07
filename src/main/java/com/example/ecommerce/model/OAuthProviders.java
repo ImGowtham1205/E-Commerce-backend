@@ -1,5 +1,7 @@
 package com.example.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class OAuthProviders {
 	private long id;
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private Users userid;
 	private String provider;
 	private String providerid;

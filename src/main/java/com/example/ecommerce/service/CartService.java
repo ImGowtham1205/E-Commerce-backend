@@ -9,14 +9,13 @@ import org.springframework.stereotype.Service;
 import com.example.ecommerce.model.Cart;
 import com.example.ecommerce.repository.CartRepo;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class CartService {
 	
 	private CartRepo cartrepo;
-	
-	public CartService(CartRepo cartrepo) {
-		this.cartrepo = cartrepo;
-	}
 	
 	public ResponseEntity<String> addCart(Cart cart){
 		cartrepo.save(cart);

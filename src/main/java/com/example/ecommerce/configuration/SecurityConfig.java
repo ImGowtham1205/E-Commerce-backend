@@ -30,9 +30,11 @@ import com.example.ecommerce.oauth.OAuthSuccessHandler;
 import com.example.ecommerce.oauth.ProcessOAuth2UsersService;
 
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class SecurityConfig {
 	
     private UserDetailsService user;
@@ -40,16 +42,7 @@ public class SecurityConfig {
     private OAuthSuccessHandler OAuthSuccess;
     private OAuth2Service OAuthService;
     private ProcessOAuth2UsersService oauthuserservice;
-      
-    public SecurityConfig(UserDetailsService user ,JwtFilter filter,OAuthSuccessHandler OAuthSuccess
-    		,OAuth2Service OAuthService,ProcessOAuth2UsersService oauthuserservice) {
-    	this.user = user;
-    	this.filter = filter;
-    	this.OAuthSuccess = OAuthSuccess;
-    	this.OAuthService = OAuthService;
-    	this.oauthuserservice = oauthuserservice;
-    }
-    
+       
     @Bean
     public SecurityFilterChain securityChain(HttpSecurity http) throws Exception {
         return http

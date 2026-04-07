@@ -13,21 +13,16 @@ import com.example.ecommerce.service.JwtService;
 import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 
 @RestController
+@AllArgsConstructor
 public class UserProfileCompleteController {
 
 	private JwtService jwtservice;
 	private UsersService userservice;
 	private PasswordEncoder encorder;
-	
-	public UserProfileCompleteController(JwtService jwtservice,UsersService userservice
-			,PasswordEncoder encorder) {
-		this.jwtservice = jwtservice;
-		this.userservice = userservice;
-		this.encorder = encorder;
-	}
-	
+		
 	@PutMapping("/api/user/complete-profile")
 	public ResponseEntity<String> profileComplete(@RequestBody Map<String,String> profile
 			,HttpServletRequest request){

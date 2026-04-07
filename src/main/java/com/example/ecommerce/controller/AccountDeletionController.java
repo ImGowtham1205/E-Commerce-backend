@@ -9,17 +9,14 @@ import com.example.ecommerce.service.AccountDeletionService;
 import com.example.ecommerce.service.JwtService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 
 @RestController
+@AllArgsConstructor
 public class AccountDeletionController {
 	
 	private JwtService jwtservice;
 	private AccountDeletionService accountdeletionservice;
-	
-	public AccountDeletionController(JwtService jwtservice,AccountDeletionService accountdeletionservice) {
-		this.jwtservice = jwtservice;
-		this.accountdeletionservice = accountdeletionservice;
-	}
 	
 	@DeleteMapping("/api/user/accountdeletion")
 	public ResponseEntity<String> userAccountDelete(HttpServletRequest request,@RequestBody String password){

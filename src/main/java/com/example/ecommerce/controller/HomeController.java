@@ -1,6 +1,5 @@
 package com.example.ecommerce.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,18 +9,14 @@ import com.example.ecommerce.service.JwtService;
 import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@AllArgsConstructor
 public class HomeController {
 	
 	private JwtService jwtservice;
 	private UsersService userservice;
-	
-	public HomeController(JwtService jwtservice,UsersService userservice) {
-		this.jwtservice = jwtservice;
-		this.userservice = userservice;
-	}
 	
 	@GetMapping("/api/user/home")
 	public String userGreet(HttpServletRequest request) {

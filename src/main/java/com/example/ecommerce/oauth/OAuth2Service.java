@@ -5,14 +5,13 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class OAuth2Service extends DefaultOAuth2UserService{
 		
 	private ProcessOAuth2UsersService oauthuserservice;
-	
-	public OAuth2Service(ProcessOAuth2UsersService oauthuserservic) {
-		this.oauthuserservice = oauthuserservic;
-	}
 	
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest request) {

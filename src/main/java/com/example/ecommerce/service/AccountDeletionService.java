@@ -12,7 +12,10 @@ import com.example.ecommerce.repository.AdminRepo;
 import com.example.ecommerce.repository.BlackListTokenRepo;
 import com.example.ecommerce.repository.UserRepo;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class AccountDeletionService {
 	
 	private UserRepo userrepo;
@@ -22,19 +25,7 @@ public class AccountDeletionService {
 	private JwtService jwtservice;
 	private MailService mailsevice;
 	private UserCleanUpService usercleanservice;
-	
-	public AccountDeletionService(UserRepo userrepo,AdminRepo adminrepo,
-			PasswordService passwordservice,BlackListTokenRepo blacklisttokenrepo,JwtService jwtservice
-			,MailService mailsevice,UserCleanUpService usercleanservice) {
-		this.userrepo = userrepo;
-		this.adminrepo = adminrepo;
-		this.passwordservice = passwordservice;
-		this.blacklisttokenrepo = blacklisttokenrepo;
-		this.jwtservice = jwtservice;
-		this.mailsevice = mailsevice;
-		this.usercleanservice = usercleanservice;
-	}
-	
+		
 	@Transactional
 	public ResponseEntity<String> userAccountDeletion(String email,String password,String token){
 		if(!userrepo.existsByEmail(email)) 

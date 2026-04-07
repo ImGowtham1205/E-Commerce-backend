@@ -12,32 +12,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ecommerce.model.Cart;
-import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.CartService;
 import com.example.ecommerce.service.JwtService;
-import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 
 @RestController
+@AllArgsConstructor
 public class CartController {
 	
 	private CartService cartservice;
 	private JwtService jwtservice;
-	private UsersService userservice;
-	
-	public CartController(CartService cartservice,JwtService jwtservice,UsersService userservice) {
-		this.cartservice = cartservice;
-		this.jwtservice = jwtservice;
-		this.userservice = userservice;
-	}
 	
 	@PostMapping("/api/user/addtocart")
 	public ResponseEntity<String> addCart(@RequestBody Cart cart,HttpServletRequest request){
 		String token = jwtservice.getToken(request);
-		String email = jwtservice.extractEmail(token);
-		Users user = userservice.getUser(email);
-		cart.setUserId(user.getId());
+		long userid = jwtservice.extractUserId(token);
+		cart.setUserId(userid);
 		ResponseEntity<String> status = cartservice.addCart(cart);
 		return ResponseEntity.ok(status.getBody());
 	}	
@@ -45,9 +37,7 @@ public class CartController {
 	@GetMapping("/api/user/getcartitem")
 	public List<Cart> fetchCartItemsByUser(HttpServletRequest request){
 		String token = jwtservice.getToken(request);
-		String email = jwtservice.extractEmail(token);
-		Users user = userservice.getUser(email);
-		long userid = user.getId();
+		long userid = jwtservice.extractUserId(token);
 		return cartservice.fetchCartProduct(userid);
 	}
 	

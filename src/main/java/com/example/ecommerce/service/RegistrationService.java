@@ -5,16 +5,14 @@ import org.springframework.stereotype.Service;
 import com.example.ecommerce.model.Users;
 import com.example.ecommerce.repository.UserRepo;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class RegistrationService {
 	
 	private UserRepo userrepo;
 	private MailService mailservice;
-	
-	public RegistrationService(UserRepo userrepo,MailService mailservice) {
-		this.userrepo=userrepo;
-		this.mailservice=mailservice;
-	}
 	
 	public void registerUser(Users user) {
 		userrepo.save(user);

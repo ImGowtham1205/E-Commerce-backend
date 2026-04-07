@@ -17,7 +17,10 @@ import com.example.ecommerce.repository.AdminRepo;
 import com.example.ecommerce.repository.PasswordResetTokenRepo;
 import com.example.ecommerce.repository.UserRepo;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class PasswordService {
 	
 	private UserRepo userrepo;
@@ -27,19 +30,7 @@ public class PasswordService {
 	private AdminRepo adminrepo;
 	private AdminPasswordResetTokenRepo adminpassrepo;
 	private UsersService userservice;
-	
-	public PasswordService(UserRepo userrepo,PasswordResetTokenRepo passwordrepo,
-			MailService mailservice,PasswordEncoder encorder,AdminRepo adminrepo,
-			AdminPasswordResetTokenRepo adminpassrepo,UsersService userservice) {
-		this.userrepo = userrepo;
-		this.passwordrepo = passwordrepo;
-		this.mailservice = mailservice;
-		this.encorder = encorder;
-		this.adminrepo = adminrepo;
-		this.adminpassrepo = adminpassrepo;
-		this.userservice = userservice;
-	}
-	
+		
 	public ResponseEntity<String> forgotPassword(String email) {
 		String token = UUID.randomUUID().toString();
 		Users user =null;

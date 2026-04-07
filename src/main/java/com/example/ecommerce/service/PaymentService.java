@@ -22,16 +22,16 @@ public class PaymentService {
 	private ProductService productService;
 	private UsersService userService;
 
-	@Value("${razorpay.client.id}")
-	private String clientid;
-	@Value("${razorpay.client.secret}")
-	private String clientsecret;
-
 	public PaymentService(OrderService orderService, ProductService productService, UsersService userService) {
 		this.orderService = orderService;
 		this.productService = productService;
 		this.userService = userService;
 	}
+
+	@Value("${razorpay.client.id}")
+	private String clientid;
+	@Value("${razorpay.client.secret}")
+	private String clientsecret;
 
 	public Map<String, String> createOrder(int amonut, long userid) throws RazorpayException {
 

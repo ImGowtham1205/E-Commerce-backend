@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ecommerce.service.PaymentService;
 import com.razorpay.RazorpayException;
 
+import lombok.AllArgsConstructor;
+
 @RestController
+@AllArgsConstructor
 public class PaymentController {
 	
 	private final PaymentService paymentService;
 
-    public PaymentController(PaymentService paymentService) {
-        this.paymentService = paymentService;
-    }
-	
     @PostMapping("/api/user/create")
     public Map<String, String> createOrder(@RequestBody Map<String,Object> data) throws RazorpayException  {
     	int amount = Integer.parseInt(data.get("amount").toString());

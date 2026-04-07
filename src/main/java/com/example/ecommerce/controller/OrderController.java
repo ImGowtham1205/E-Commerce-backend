@@ -21,23 +21,17 @@ import com.example.ecommerce.service.UsersService;
 import com.razorpay.RazorpayException;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 
 @RestController
+@AllArgsConstructor
 public class OrderController {
 	
 	private UsersService userservice;
 	private OrderService orderservice;
 	private ProductService productservice;
 	private JwtService jwtservice;
-	
-	public OrderController(UsersService userservice,OrderService orderservice,
-			ProductService productservice,JwtService jwtservice) {
-		this.userservice = userservice;
-		this.orderservice = orderservice;
-		this.productservice = productservice;
-		this.jwtservice = jwtservice;
-	}
-	
+		
 	@PostMapping("/api/user/purchase/{productid}")
 	public ResponseEntity<String> purchaseProduct(@PathVariable long productid,
 			@RequestBody Map<String,Object> body){

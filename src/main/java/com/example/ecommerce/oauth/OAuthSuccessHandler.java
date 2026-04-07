@@ -9,20 +9,21 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
 
+import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.JwtService;
+import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class OAuthSuccessHandler implements AuthenticationSuccessHandler{
 
 	private JwtService jwtservice;
-	
-	public OAuthSuccessHandler(JwtService jwtservice) {
-		this.jwtservice = jwtservice;
-	}
+	private UsersService userservice;
 	
 	private static final String FRONTEND_URL = "http://localhost:5173";
 	
@@ -32,8 +33,9 @@ public class OAuthSuccessHandler implements AuthenticationSuccessHandler{
 		
 		OAuth2User oauthuser = (OAuth2User) authentication.getPrincipal();
 		String email = oauthuser.getAttribute("email");
+		Users user = userservice.getUser(email);
 		String role = "ROLE_USER";
-		String token = jwtservice.generateToken(email, role);
+		String token = jwtservice.generateToken(email, role ,user.getId());
 		
 		String encodedToken = URLEncoder.encode(token, StandardCharsets.UTF_8);
 		

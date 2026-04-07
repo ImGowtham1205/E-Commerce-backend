@@ -9,14 +9,13 @@ import org.springframework.stereotype.Service;
 import com.example.ecommerce.model.Comment;
 import com.example.ecommerce.repository.CommentRepo;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class CommentService {
 	
 	private CommentRepo commentrepo;
-		
-	public CommentService(CommentRepo commentrepo) {
-		this.commentrepo = commentrepo;
-	}
 	
 	public ResponseEntity<String> addComment(Comment cmt){
 		commentrepo.save(cmt);

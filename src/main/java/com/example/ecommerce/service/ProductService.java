@@ -12,18 +12,15 @@ import com.example.ecommerce.repository.CartRepo;
 import com.example.ecommerce.repository.CommentRepo;
 import com.example.ecommerce.repository.ProductRepo;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class ProductService {
 	
 	private ProductRepo productrepo;
 	private CartRepo cartrepo;
 	private CommentRepo commentrepo;
-	
-	public ProductService(ProductRepo productrepo,CartRepo cartrepo,CommentRepo commentrepo) {
-		this.productrepo = productrepo;
-		this.cartrepo = cartrepo;
-		this.commentrepo = commentrepo;
-	}
 	
 	public ResponseEntity<String> addProduct(Products product) {
 		productrepo.save(product);

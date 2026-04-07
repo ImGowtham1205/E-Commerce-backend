@@ -7,37 +7,44 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.ecommerce.model.Admins;
 import com.example.ecommerce.model.Users;
 import com.example.ecommerce.service.AuthenticationService;
 import com.example.ecommerce.service.JwtService;
+import com.example.ecommerce.service.UsersService;
+
+import lombok.AllArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
+@AllArgsConstructor
 public class LoginController {
-	
+
 	private AuthenticationService authservice;
 	private JwtService jwtservice;
-	
-	public LoginController(AuthenticationService authservice,JwtService jwtservice) {
-		this.authservice = authservice;
-		this.jwtservice = jwtservice;
-	}
-	
-		@PostMapping("/login")
-		public ResponseEntity<?> login(@RequestBody Users user) throws AuthenticationException{
-			Authentication auth = authservice.verify(user);
-			if(auth.isAuthenticated()) {
-				UserDetails userdetails = (UserDetails) auth.getPrincipal();
-				String email = user.getEmail();
-				String role = userdetails.getAuthorities().iterator().next().getAuthority();
-				String token = jwtservice.generateToken(email,role);
-				return ResponseEntity.ok(Map.of("token",token,"role",role));
+	private UsersService userservice;
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody Users user) throws AuthenticationException {
+		Authentication auth = authservice.verify(user);
+		if (auth.isAuthenticated()) {
+			UserDetails userdetails = (UserDetails) auth.getPrincipal();
+			String email = user.getEmail();
+			String role = userdetails.getAuthorities().iterator().next().getAuthority();
+			long userid = 0;
+			if(role.equals("ROLE_USER")) {
+				Users dbuser = userservice.getUser(email);
+				userid = dbuser.getId();
+			}
+			else if(role.equals("ROLE_ADMIN")) {
+				Admins dbuser = userservice.getAdmin(email);
+				userid = dbuser.getId();
 			}	
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message","Invalid email or password"));
+			String token = jwtservice.generateToken(email, role ,userid);
+			return ResponseEntity.ok(Map.of("token", token, "role", role));
 		}
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Invalid email or password"));
+	}
 }

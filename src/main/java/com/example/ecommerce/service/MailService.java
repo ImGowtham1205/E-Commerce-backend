@@ -9,17 +9,15 @@ import com.example.ecommerce.model.Orders;
 import com.example.ecommerce.model.Products;
 import com.example.ecommerce.model.Users;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class MailService {
 	
 	private SimpleMailMessage message;
 	private JavaMailSender sender;
 
-	public MailService(SimpleMailMessage message,JavaMailSender sender) {
-		this.message=message;
-		this.sender=sender;
-	}
-	
 	public void accountCreationMail(Users user) {
 		String subject = "Welcome to AzCart – Your Account Has Been Created Successfully 🎉";
 		String receiver = user.getEmail();

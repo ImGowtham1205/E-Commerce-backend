@@ -25,17 +25,17 @@ public class OrderService {
 	private MailService mailservice;
 	private ProductService productservice;
 	
+	public OrderService(OrdersRepo orderrepo, MailService mailservice, ProductService productservice) {
+		this.orderrepo = orderrepo;
+		this.mailservice = mailservice;
+		this.productservice = productservice;
+	}
+	
 	@Value("${razorpay.client.id}")
 	private String clientid;
 	@Value("${razorpay.client.secret}")
 	private String clientsecret;
-	
-	public OrderService(OrdersRepo orderrepo,MailService mailservice,ProductService productservice) {
-		this.mailservice =mailservice;
-		this.orderrepo = orderrepo;
-		this.productservice = productservice;
-	}
-	
+		
 	public ResponseEntity<String> placeOrder(Orders order,Products product,Users user){
 		orderrepo.save(order);
 		productservice.updateStock(product);

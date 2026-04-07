@@ -33,11 +33,11 @@ public class JwtService {
 	}
 	
 	//This method is use to generate jwt token
-	public String generateToken(String email,String role) {
+	public String generateToken(String email,String role,long userid) {
 		
 		Map<String,Object> claim = new HashMap<>();
 		claim.put("role", role);
-		
+		claim.put("userid",userid);
 		return Jwts.builder()
 				.claims()
 				.add(claim)
@@ -111,10 +111,16 @@ public class JwtService {
     public String refreshToken(String token) {
         String email = extractEmail(token);
         String role = extractRole(token);
-        return generateToken(email,role);
+        long userid = extractUserId(token);
+        return generateToken(email,role,userid);
     }
     
     public String extractRole(String token) {
         return extractClaim(token, claims -> claims.get("role", String.class));
     }
+    
+    public Long extractUserId(String token) {
+    	return extractClaim(token, claims -> claims.get("userid",Long.class));
+    }
+    
 }

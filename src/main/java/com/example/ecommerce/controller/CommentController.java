@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,21 +19,15 @@ import com.example.ecommerce.service.JwtService;
 import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@AllArgsConstructor
 public class CommentController {
 	
 	private JwtService jwtservice;
 	private CommentService commentservice;
 	private UsersService userservice;
-	
-	public CommentController(JwtService jwtservice,CommentService commentservice
-			,UsersService userservice) {
-		this.jwtservice = jwtservice;
-		this.commentservice = commentservice;
-		this.userservice = userservice;
-	}
 	
 	@PostMapping("/api/user/addcomment")
 	public ResponseEntity<String> addComment(@RequestBody Comment cmt){

@@ -5,7 +5,6 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,23 +19,16 @@ import com.example.ecommerce.service.PasswordService;
 import com.example.ecommerce.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
+@AllArgsConstructor
 public class PasswordController {
 	
 	private PasswordService passwordservice;
 	private PasswordEncoder encorder;
 	private JwtService jwtservice;
 	private UsersService userservice;
-	
-	public PasswordController(PasswordService passwordservice,PasswordEncoder encorder
-			,JwtService jwtservice,UsersService userservice) {
-		this.passwordservice = passwordservice;
-		this.encorder = encorder;
-		this.jwtservice = jwtservice;
-		this.userservice = userservice;
-	}
 	
 	@PostMapping("/forgot-password")
 	public ResponseEntity<String> forgotPassword(@RequestBody Map<String,String> body) {

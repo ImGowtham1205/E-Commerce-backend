@@ -11,16 +11,14 @@ import com.example.ecommerce.model.Users;
 import com.example.ecommerce.repository.AdminRepo;
 import com.example.ecommerce.repository.UserRepo;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class UsersService implements UserDetailsService{
 
 	private UserRepo userrepo;
 	private AdminRepo adminrepo;
-	
-	public UsersService(UserRepo userrepo,AdminRepo adminrepo) {
-		this.userrepo = userrepo;
-		this.adminrepo = adminrepo;
-	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
